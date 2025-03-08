@@ -6,7 +6,7 @@
 Muchachos les dejo mi granito de arena, de aqui en adelante modificaremos.
 quiero que tengan la libertad de modificar lo que quieran, y reganarme.
 '''
-
+#librerias
 import random #importamos la libreria random
 import os #importamos os
 import json #json

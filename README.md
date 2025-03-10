@@ -10,9 +10,14 @@
 
 ## Funciones Principales:
 
-**<span style="color:blue">Creación</span>**: En esta sección, los usuarios pueden generar boletas seleccionando los dígitos correspondientes según el tipo de juego de la lotería. Además, pueden elegir la cantidad de jugadas y la opción de revancha. Tras realizar estas selecciones, se procede a la compra de las boletas.
+```Python
+main() = #Función Main en donde se ejecutará el programa.
 
-## Variables Principales
+limpiar_pantalla() = #Función que se ejecuta para limpiar la terminal. Dicha función determinará si el sistema operativo es Windows o Unix. 
+
+menu() = #Función en donde abarcará la lista de opciones que proveerá el programa.
+```
+
 
 
 ## Recursos Adicionales:

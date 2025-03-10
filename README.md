@@ -10,6 +10,7 @@
 
 ## Funciones Principales:
 
+**<span style="color:blue">Creación</span>**: En esta sección, los usuarios pueden generar boletas seleccionando los dígitos correspondientes según el tipo de juego de la lotería. Además, pueden elegir la cantidad de jugadas y la opción de revancha. Tras realizar estas selecciones, se procede a la compra de las boletas.
 
 ## Variables Principales
 

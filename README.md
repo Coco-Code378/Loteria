@@ -8,14 +8,31 @@
 
 3. **Registros**: En la sección final, se lleva a cabo todos los registros tanto de boletas como de sorteos y las diversas opciones que brinda el programa. 
 
-## Funciones Principales:
+## Funciones:
 
 ```Python
-main() = #Función Main en donde se ejecutará el programa.
 
-limpiar_pantalla() = #Función que se ejecuta para limpiar la terminal. Dicha función determinará si el sistema operativo es Windows o Unix. 
 
-menu() = #Función en donde abarcará la lista de opciones que proveerá el programa.
+#------------------------------------------------------------------------------------------------------------#
+# Principales:
+
+#Función Main en donde se ejecutará el programa y contendrá los match case en donde el usuario podrá elegir lo que quiere realizar.
+main()
+
+#Función que abarcará todo tipo de menu interactivo para el usuario.
+menu() =
+
+#Función que se ejecuta para limpiar la terminal. Dicha función determinará si el sistema operativo es Windows o Unix. 
+limpiar_pantalla()  
+
+#------------------------------------------------------------------------------------------------------------#
+# Lotería:
+
+#Función que abarcará la manera tanto automática como manual de poder elegir las jugadas
+creacion_boletas_loteria() 
+
+#------------------------------------------------------------------------------------------------------------#
+
 ```
 
 
@@ -23,3 +40,8 @@ menu() = #Función en donde abarcará la lista de opciones que proveerá el prog
 ## Recursos Adicionales:
 
 ## Desarrolladores:
+
+- Jorge Maldonado - Scrum Master
+- Christian Matias - Scrum Team
+- Joel Maisoent - Scrum Team
+

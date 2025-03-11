@@ -40,9 +40,38 @@ def limpiar_pantalla():
 def creacion_boletas_loteria():
    
     def aleatorio():
-         boleta_aleatoria = []
+         boletas_aleatoria = []
+         revancha_aleatoria = []
     def manual():
-        boleta_manual = []
+        cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
+
+        jugadas = []
+        boletas_manual = []
+        for i in range(cantidad_jugadas):
+            valores_jugadas = []
+            valores_unicos = set()
+    
+            for j in range(6):
+                while True:  
+                    numeros = int(input(f"Ingrese un valor: {j + 1} del 0 al {66 - 1} en la jugada {i + 1}, (No se puede repetir): "))
+                
+                    if not numeros < 0 and not numeros > 65:
+                        if numeros not in valores_unicos:
+                            print(f"El número: {numeros} fue agregado")
+                            valores_jugadas.append(numeros)
+                            valores_unicos.add(numeros)
+                            break  
+                        else:
+                            print(f"No se puede repetir el valor {numeros}, por favor inténtelo de nuevo")
+                    else:
+                        print("Elegiste un número no correspondido a lo que se pide.")    
+            valores_unicos.clear()             
+            jugadas.append(valores_jugadas)
+        
+        boletas_manual.append(jugadas)
+        print(f"{jugadas}")
+        print(f"{boletas_manual}")
+    return aleatorio, manual
         
 # Fin de la creación de boletas
 
@@ -61,7 +90,7 @@ def menu():
     #Funcion para menu los juegos
     def menu_juegos():
         print(f"{"-" * 15} Bienvenido a la loteria {"-" * 15}")
-        print(f"{"-" * 6} 1. Crear boleta")
+        print(f"{"-" * 6} 1. Comprar boleta")
         print(f"{"-" * 6} 2. Generar sorteo")
         print(f"{"-" * 6} 3. Reportes")
         print(f"{"-" * 6} 4. Salir")
@@ -85,7 +114,7 @@ def menu():
 def main():
     #Referencias de funciones:
     principal, juego, boletas = menu()
-    
+    aleatorio, manual = creacion_boletas_loteria()
     while True:
         try:
             principal()
@@ -112,7 +141,7 @@ def main():
                                     '''
                                     # Llamando la función Limpiar_pantalla
                                     limpiar_pantalla()
-                                    
+                                    manual()
                                     
                                 case "2":
                                     print(f"\n {"-" * 15} Sorteos {"-" * 15}\n")

@@ -125,7 +125,7 @@ def crear_archivo(file):
 
 def escoger():
    try: 
-    escoger = str(input("Desea continuar? De lo contrario perdería su boleta"))
+    escoger = str(input("Desea continuar? De lo contrario perdería su boleta".lower())) #lo convierto en lower la contestación
                                      
     if escoger == "si":
      print("Excelente, su archivo tiene la boleta registrada")

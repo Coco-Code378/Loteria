@@ -39,11 +39,88 @@ def limpiar_pantalla():
 #-------------------------------------------------------------------------------------------------------
 #Funcion Principal de creación de boletas
 
-def creacion_boletas_loteria():
+def creacion_boletas():
     boleta_total = []
+
+#Funcion Secundaria para premios de lotería
+#---------------------------------------------------------------------------------------------------------
+    def premios_loteria():
+    #Tabla para hacer print a los premios principales
+    #Columnas:
+        print("+--------------------------------------+")
+        print("|                 Premios              |")
+        print("+--------------------------------------+")
+        print("| Sorteo Principal      |    Premio    |")
+        print("+--------------------------------------+")
+    
+    # Filas:
+        print("| Acierta los 6 números | 1,000,000.00 |")
+        print("+--------------------------------------+")
+        print("|  Acierta 5 números    | 300,000.00   |")
+        print("+--------------------------------------+")
+        print("|  Acierta 4 números    | 75,0000.00   |")
+        print("+--------------------------------------+")
+        print("|  Acierta 3 números    |  1  boleto   |")
+        print("+--------------------------------------+")
+
+    #Tabla para hacer print a los premios de revancha
+    #Columnas:
+        print("+--------------------------------------+")
+        print("|         Premios  de  Revancha        |")
+        print("+--------------------------------------+")
+        print("|     Revancha      |      Premio      |")
+        print("+--------------------------------------+")
+    
+    # Filas:
+        print("| Acierta los 6 números | 500,000.00   |")
+        print("+--------------------------------------+")
+        print("|  Acierta 5 números    | 100,000.00   |")
+        print("+--------------------------------------+")
+        print("|  Acierta 4 números    | 25,0000.00   |")
+        print("+--------------------------------------+")
+ #------------------------------------------------------------------------------------------------------------
+ # Fin de la función de premios para Loteria      
+
+#Funcion Secundaria para premios de lotería
+#---------------------------------------------------------------------------------------------------------
+    def premios_saca3():
+    #Tabla para hacer print a los premios principales
+    #Columnas:
+        print("+------------------------------------------------------------+")
+        print("|                                Premios                     |")
+        print("+------------------------------------------------------------+")
+        print("|            Sorteo Principal         |        Premio        |")
+        print("+------------------------------------------------------------+")
+    
+    # Filas: 
+        print("| Exacta(3 números en orden correcto) |        100,000.00    |")
+        print("+------------------------------------------------------------+")
+        print("|             Combinada               |         25,000.00    |")
+        print("| (3 números en cualquier orden)      |                      |")
+        print("+------------------------------------------------------------+")
+        
+
+     #Tabla para hacer print a los premios revancha
+    #Columnas:
+        print("+------------------------------------------------------------+")
+        print("|                                Premios                     |")
+        print("+------------------------------------------------------------+")
+        print("|              Revancha              |        Premio         |")
+        print("+------------------------------------------------------------+")
+    
+    # Filas: 
+        print("| Exacta(3 números en orden correcto) |        25,000.00     |")
+        print("+------------------------------------------------------------+")
+        print("|             Combinada               |        12,500.00     |")
+        print("| (3 números en cualquier orden)      |                      |")
+        print("+------------------------------------------------------------+")
+        
+ #------------------------------------------------------------------------------------------------------------
+ # Fin de la función de premios para Loteria      
+
 #Funcion Secundaria para Aleatorio
 #---------------------------------------------------------------------------------------------------------
-    def aleatorio():
+    def aleatorio_loteria():
          boletas_aleatoria = []
          for i in range(6):
              boleta = random.sample(range(0, 66),6)
@@ -56,7 +133,7 @@ def creacion_boletas_loteria():
    
 #Función Secundaria para Manual
 #-----------------------------------------------------------------------------------------------------------
-    def manual():
+    def manual_loteria():
         #Variables y listas
         cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
 
@@ -93,7 +170,7 @@ def creacion_boletas_loteria():
     #Fin de la función Manual
     
     #Returns de la función Creación_Boletas:
-    return aleatorio, manual, boleta_total
+    return aleatorio_loteria, manual_loteria, boleta_total, premios_loteria, premios_saca3
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 #Fin de la función creación de boletas de Lotería
 
@@ -237,7 +314,7 @@ def menu():
 def main():
     #Referencias de funciones:
     principal, juego, boletas = menu()
-    aleatorio, manual, total_boletas = creacion_boletas_loteria()
+    aleatorio_loteria, manual_loteria, total_boletas, premios_loteria, premios_saca3 = creacion_boletas()
     comparar, generarloteria, generarsaca3  = creacion_sorteos()
     
     while True:
@@ -266,7 +343,9 @@ def main():
                                 '''
                                 # Llamando la función Limpiar_pantalla
                                 limpiar_pantalla()
-                                manual()
+                                premios_saca3()
+                                premios_loteria()
+                                manual_loteria()
                                 
                                     
                             case "2":

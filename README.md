@@ -20,19 +20,40 @@
 main()
 
 #Función que abarcará todo tipo de menu interactivo para el usuario.
-menu() =
+menu() 
 
 #Función que se ejecuta para limpiar la terminal. Dicha función determinará si el sistema operativo es Windows o Unix. 
 limpiar_pantalla()  
 
 #------------------------------------------------------------------------------------------------------------#
-# Lotería:
+# Funciones para Lotería y Saca 3:
 
-#Función que abarcará la manera tanto automática como manual de poder elegir las jugadas
-creacion_boletas_loteria() 
+#Función que abarcará la manera tanto automática como manual de creación de boletas tanto para lotería como para saca 3
+creacion_boletas()
+
+#Función que abarcará la creación y comparación de sorteos en las jugadas del usuario:
+creacion_sorteos() 
 
 #------------------------------------------------------------------------------------------------------------#
+# Función de creacion_boletas()
 
+#Función anidada que asigna una jugada de forma aleatoria para el juego de Lotería
+aleatorio_loteria()
+
+#Función anidada que asigna una jugada de forma manual, ingresando los dígitos del usuario en el juego de Lotería
+manual_loteria()
+
+#-------------------------------------------------------------------------------------------------------------#
+# Función de creacion_sorteos()
+
+#Función anidada para la comparación de boletas de jugadas con las boletas de sorteos
+comparar_boletas(sorteo, total_boletas)
+
+#Función anidada para generar sorteos en el juego de lotería:
+generar_sorteo_loteria()
+
+#Función anidada para generar sorteos en el juego de saca3
+generar_sorteo_saca3()
 ```
 
 

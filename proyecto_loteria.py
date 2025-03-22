@@ -38,6 +38,7 @@ def limpiar_pantalla():
 
 #-------------------------------------------------------------------------------------------------------
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #Funcion Principal de creación de boletas
 
 def creacion_boletas_loteria():
@@ -63,6 +64,14 @@ boleta_total = []  # Lista global para almacenar todas las boletas generadas
 def creacion_boletas_loteria():
     
     def aleatorio():
+=======
+#Funcion para la creación de boletas
+boleta_total = []  # Lista global para almacenar todas las boletas generadas
+
+def creacion_boletas_loteria():
+    
+    def aleatorio():
+>>>>>>> Stashed changes
         boleto = int(input("¿Cuántos boletos desea?: "))
         boletas_aleatoria = []  # Lista local para almacenar las boletas generadas
         
@@ -77,6 +86,27 @@ def creacion_boletas_loteria():
             else:
                 print(f"Boleta {i + 1}: No ganó.")
         
+<<<<<<< Updated upstream
+=======
+     
+        
+        # Generar los boletos aleatorios solicitados
+        for i in range(boleto):
+            boleta = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
+            boleta_total.append(boleta)  # Agrega cada boleta al total global
+            boletas_aleatoria.append(boleta)  # Agrega a la lista local
+        print(f"Esta es tu boleta aleatoria: {boletas_aleatoria}")
+        
+           # Guardar los datos en un archivo
+        with open(file, "a") as archivo:
+            archivo.write(f"Su boleta es: {boletas_aleatoria}\n")
+            archivo.write(f"La del sorteo es: {numero}\n")
+          
+            archivo.write("=" * 50 + "\n")
+        
+        return boletas_aleatoria
+
+>>>>>>> Stashed changes
      
         
         # Generar los boletos aleatorios solicitados
@@ -206,6 +236,9 @@ def comparar_boletas():
             archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo2} \n iguales: {coincidencias}\n")
             archivo.write("=" * 50)
         
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 #------------------------------------------------------------------------------------------------------
 #fin de la función secundaria para generar sorteos para Loteria 
@@ -395,6 +428,9 @@ def main():
 =======
     aleatorio, manual = creacion_boletas_loteria()
    
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     while True:
         try:
@@ -488,15 +524,21 @@ def main():
                                 escoger()#llamo a la función para que escoja lo que desea hacer
                                      
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             case "4":
                                 print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
                                 break
                             case _:
 =======
+=======
+>>>>>>> Stashed changes
                                   case "4":
                                     print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
                                     break
                                   case _:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                                     print("Hubo un error al intentar seleccionar la opción deseada.")
                         

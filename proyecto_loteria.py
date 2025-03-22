@@ -37,6 +37,7 @@ def limpiar_pantalla():
 # Fin de la función Limpiar_Pantalla
 
 #-------------------------------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 #Funcion Principal de creación de boletas
 
 def creacion_boletas_loteria():
@@ -55,6 +56,47 @@ def creacion_boletas_loteria():
  # Fin de la función Aleatoria
    
 #Función Secundaria para Manual
+=======
+#Funcion para la creación de boletas
+boleta_total = []  # Lista global para almacenar todas las boletas generadas
+
+def creacion_boletas_loteria():
+    
+    def aleatorio():
+        boleto = int(input("¿Cuántos boletos desea?: "))
+        boletas_aleatoria = []  # Lista local para almacenar las boletas generadas
+        
+        numero = random.sample(range(0, 66), 6)  # Genera un número aleatorio de sorteo
+        print(f"El número aleatorio es: {numero}")
+        
+        # Comparar cada boleta existente con el número aleatorio generado
+        for i, boleta in enumerate(boleta_total):
+            coincidencias = set(boleta) & set(numero)  # Encuentra los números en común
+            if coincidencias:
+                print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+            else:
+                print(f"Boleta {i + 1}: No ganó.")
+        
+     
+        
+        # Generar los boletos aleatorios solicitados
+        for i in range(boleto):
+            boleta = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
+            boleta_total.append(boleta)  # Agrega cada boleta al total global
+            boletas_aleatoria.append(boleta)  # Agrega a la lista local
+        print(f"Esta es tu boleta aleatoria: {boletas_aleatoria}")
+        
+           # Guardar los datos en un archivo
+        with open(file, "a") as archivo:
+            archivo.write(f"Su boleta es: {boletas_aleatoria}\n")
+            archivo.write(f"La del sorteo es: {numero}\n")
+          
+            archivo.write("=" * 50 + "\n")
+        
+        return boletas_aleatoria
+
+     
+>>>>>>> Stashed changes
 #-----------------------------------------------------------------------------------------------------------
     def manual():
         #Variables y listas
@@ -85,6 +127,7 @@ def creacion_boletas_loteria():
                     jugadas.append(valores_jugadas)
                     boleta_total.append(valores_jugadas)
                 
+<<<<<<< Updated upstream
                 print(f"Boletas manuales ingresadas: {jugadas}")
                 break
             except ValueError as value:
@@ -113,6 +156,57 @@ def creacion_sorteos():
                 print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}") #Compara las coindicencias
             else:
                 print(f"Boleta {i + 1}: No ganó.")
+=======
+                    if 0 <=  numeros <= 65:
+                        if numeros not in valores_unicos:
+                            print(f"El número: {numeros} fue agregado")
+                            valores_jugadas.append(numeros)
+                            valores_unicos.add(numeros)
+                            break  
+                        else:
+                            print(f"No se puede repetir el valor {numeros}, por favor inténtelo de nuevo")
+                    else:
+                        print("Elegiste un número no correspondido a lo que se pide.")    
+                    
+            jugadas.append(valores_jugadas)
+            boleta_total.append(valores_jugadas)
+    
+        print(f"Boletas manuales ingresadas: {jugadas}")
+        
+        
+    return aleatorio, manual
+
+
+
+
+
+   
+    
+    
+    
+
+#-----------------------------------------------------------------------------------------------------
+#Creando funcion para comparar boletos
+def comparar_boletas():
+    sorteo2 = generar_sorteo()
+    print(f"Sorteo generado: {sorteo2}")
+    print("\nComparación de Boletas:")
+    #Búcle para la comparación de boleta
+    for i, boleta in enumerate(boleta_total):
+        coincidencias = set(boleta) & set(sorteo2)  # Comparamos cada boleta con el sorteo
+        
+       
+        if coincidencias:
+             print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}") #Compara las coindicencias
+           
+        else:
+             print(f"Boleta {i + 1}: No ganó.")
+             
+        with open(file2 , "a") as archivo:
+            archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo2} \n iguales: {coincidencias}\n")
+            archivo.write("=" * 50)
+        
+>>>>>>> Stashed changes
 #------------------------------------------------------------------------------------------------------
 #fin de la función secundaria para generar sorteos para Loteria 
 
@@ -154,8 +248,8 @@ def creacion_sorteos():
     #Manejando función para la creación de archivos
 #------------------------------------------------------------------------------
 
-file = "boletas.txt"
-def crear_archivo(file):
+file = "boletas_aleatorias.txt"
+def boleta_aleatoria(file):
     
     #Comenzamos el manejo de errores pero por existencia
     try: 
@@ -165,33 +259,90 @@ def crear_archivo(file):
     except FileExistsError:
         print("El archivo ya existe")
     
+    
+file2 = "boletas_manuales.txt"
+def boleta_manual(file2):
+    
+    try:
+     with open(file2 , "x"):
+        print(f"Archivo {file2} se creo bien")
+    
+    except FileExistsError:
+        print("El archivo ya existe")
+        
+        
+
+def file_aleatorio(file):
+    try:
+        with open(file, "r"):
+         lineas = file.readlines()
+         print(lineas)
+        
+            
+            
+    except FileNotFoundError:
+     print(f"El archivo no se enctra")
    
+   
+def file_manual(file2):
+    
+    try:
+        with open(file2, "r"):
+            lineas = file2.readlines()
+            print(lineas)
+
+    except FileNotFoundError:
+        print("El archivo no se encuentra")
  #Fin de la creación        
 #----------------------------------------------------------------------------
 
 def escoger():
-   try: 
-    escoger = str(input("Desea continuar? De lo contrario perdería su boleta".lower())) #lo convierto en lower la contestación
-                                     
-    if escoger == "si":
-     print("Excelente, su archivo tiene la boleta registrada")
-     crear_archivo(file)
+      try: 
+       escoger = str(input("Desea continuar? De lo contrario perdería su boleta ".lower())) #lo convierto en lower la contestación
+                                      
+       if escoger == "si":
+        print("Excelente, su archivo tiene la boleta registrada")
+        boleta_aleatoria(file)
                                          
-    elif escoger == "no":
-     print("Muy bien, fue bueno entretenerse")
-                                        
-    else:
-     print("Tiene un error en su contestación")
-     
-   except FileExistsError:
+       elif escoger == "no":
+         print("Muy bien, fue bueno entretenerse")
+                                         
+       else:
+        print("Tiene un error en su contestación")
+      
+      except FileExistsError:
        print("Ocurrio un problema en la creación del archivo")
                                          
-   except TypeError as typo:
+      except TypeError as typo:
        print(f"Parece que puso un {typo} y es (si o no)")
                                          
-   except Exception as error:
+      except Exception as error:
        print(f"Tuviste un error {error}, arreglalo")
-                                     
+       
+
+def escoger_boleta_manual():
+      try: 
+       escoger = str(input("Desea continuar? De lo contrario perdería su boleta ".lower())) #lo convierto en lower la contestación
+                                      
+       if escoger == "si":
+        print("Excelente, su archivo tiene la boleta registrada")
+        boleta_manual(file)
+                                         
+       elif escoger == "no":
+         print("Muy bien, fue bueno entretenerse")
+                                         
+       else:
+        print("Tiene un error en su contestación")
+      
+      except FileExistsError:
+       print("Ocurrio un problema en la creación del archivo")
+                                         
+      except TypeError as typo:
+       print(f"Parece que puso un {typo} y es (si o no)")
+                                         
+      except Exception as error:
+       print(f"Tuviste un error {error}, arreglalo")
+                                    
     
     
         
@@ -237,9 +388,14 @@ def menu():
 def main():
     #Referencias de funciones:
     principal, juego, boletas = menu()
+<<<<<<< Updated upstream
     aleatorio, manual, total_boletas = creacion_boletas_loteria()
     comparar, generarloteria, generarsaca3  = creacion_sorteos()
     
+=======
+    aleatorio, manual = creacion_boletas_loteria()
+   
+>>>>>>> Stashed changes
     while True:
         try:
             principal()
@@ -276,6 +432,7 @@ def main():
                                 #Llamando la función generar_boletas()
                                 sorteo = generarloteria()
 
+<<<<<<< Updated upstream
                                 print(f"\n El sorteo es: {sorteo} \n")
 
                                 #Llamando la función comparar_sorteos()
@@ -285,15 +442,62 @@ def main():
                                     
                             case "3":
                                 print(f"\n {"-" * 15} Registro {"-" * 15}\n")
+=======
+                            match opcion_uno:
+                                
+                               
+                                  case "1":
+                                     try:
+                                      boletas()
+                                      choose = int(input("Escoja entre (1) o (2): "))
+                                     
+                                      if choose == 1:
+                                         limpiar_pantalla()
+                                         aleatorio()
+                            
+                                        
+                                         
+                                      elif choose == 2 :
+                                        limpiar_pantalla()
+                                        manual()
+                                        sorteo = generar_sorteo()
+                                        print(f"El sorteo es: {sorteo}")
+                                          
+                                      else:
+                                         print("Opción no valida, Escoja entre (1) o (2)")
+                                         
+                                     except TypeError as typo:
+                                      print(f"Tiene un error {typo}")
+                                      break
+                       
+                                  case "2":
+                                    print(f"\n {"-" * 15} Sorteos {"-" * 15}\n")
+                                    
+                                    
+                                    comparar_boletas()
+                                    generar_sorteo()
+                                    
+                                    
+                                    
+                                  case "3":
+                                     print(f"\n {"-" * 15} Registro {"-" * 15}\n")
+>>>>>>> Stashed changes
                                      
                                 print("Le vamos a crear un archivo con las boletas\n")
                                      
                                 escoger()#llamo a la función para que escoja lo que desea hacer
                                      
+<<<<<<< Updated upstream
                             case "4":
                                 print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
                                 break
                             case _:
+=======
+                                  case "4":
+                                    print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
+                                    break
+                                  case _:
+>>>>>>> Stashed changes
                                     print("Hubo un error al intentar seleccionar la opción deseada.")
                         
                     

@@ -39,7 +39,7 @@ def limpiar_pantalla():
 #-------------------------------------------------------------------------------------------------------
 #Funcion Principal de creación de boletas
 
-def creacion_boletas():
+def creacion_boletas_loteria():
     boleta_total = []
 
 #Funcion Secundaria para premios de lotería
@@ -121,13 +121,20 @@ def creacion_boletas():
 #Funcion Secundaria para Aleatorio
 #---------------------------------------------------------------------------------------------------------
     def aleatorio_loteria():
-         boletas_aleatoria = []
-         for i in range(6):
-             boleta = random.sample(range(0, 66),6)
-             boleta_total.extend(boletas_aleatoria)
-             boletas_aleatoria.append(boleta)
-         print(f"Esta es tu boleta aleatoria: {boletas_aleatoria}")
-         return boletas_aleatoria
+         #Variables y Listas:
+         jugadas_aleatoria = []
+         cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
+         for i in range(cantidad_jugadas):
+             
+            for j in range(6):
+                jugada = random.sample(range(0, 66),6)
+                print (f"Jugada {j + 1} añadida.")
+            jugadas_aleatoria.append(jugada)    
+            boleta_total.append(jugadas_aleatoria)
+            
+         print(f"{jugadas_aleatoria}")
+         print(f"{boleta_total}")
+         return jugadas_aleatoria
  #------------------------------------------------------------------------------------------------------------
  # Fin de la función Aleatoria
    
@@ -314,7 +321,7 @@ def menu():
 def main():
     #Referencias de funciones:
     principal, juego, boletas = menu()
-    aleatorio_loteria, manual_loteria, total_boletas, premios_loteria, premios_saca3 = creacion_boletas()
+    aleatorio, manual, total_boletas,premios_loteria, premios_saca3 = creacion_boletas_loteria()
     comparar, generarloteria, generarsaca3  = creacion_sorteos()
     
     while True:
@@ -328,7 +335,7 @@ def main():
                 case "1":
                     # Llamando la función Limpiar_pantalla
                     limpiar_pantalla()
-                    
+                    premios_loteria()
                     while True:
                         
                         # Llamando la función menu_loteria
@@ -343,10 +350,7 @@ def main():
                                 '''
                                 # Llamando la función Limpiar_pantalla
                                 limpiar_pantalla()
-                                premios_saca3()
-                                premios_loteria()
-                                manual_loteria()
-                                
+                                aleatorio()
                                     
                             case "2":
                                 print(f"\n {"-" * 15} Sorteos {"-" * 15}\n")
@@ -452,6 +456,3 @@ def main():
 #--------------------------------------------------------------------------------------------
 #Llamada a la función Main para que el programa empiece con dicha función
 main()
-
-
-

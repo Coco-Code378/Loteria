@@ -40,6 +40,12 @@ def limpiar_pantalla():
 #Funcion para la creación de boletas
 boleta_total = []  # Lista global para almacenar todas las boletas generadas
 
+
+
+
+
+                    #Función para crear boleta de loteria
+#-----------------------------------------------------------------------------------------------------
 def creacion_boletas_loteria():
     
     def aleatorio():
@@ -50,6 +56,7 @@ def creacion_boletas_loteria():
         print(f"El número aleatorio es: {numero}")
         
         # Comparar cada boleta existente con el número aleatorio generado
+
         for i, boleta in enumerate(boleta_total):
             coincidencias = set(boleta) & set(numero)  # Encuentra los números en común
             if coincidencias:
@@ -63,7 +70,7 @@ def creacion_boletas_loteria():
         for i in range(boleto):
             boleta = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
             boleta_total.append(boleta)  # Agrega cada boleta al total global
-            boletas_aleatoria.append(boleta)  # Agrega a la lista local
+            boletas_aleatoria.append(boleta) 
         print(f"Esta es tu boleta aleatoria: {boletas_aleatoria}")
         
            # Guardar los datos en un archivo
@@ -110,13 +117,6 @@ def creacion_boletas_loteria():
 
 
 
-
-
-   
-    
-    
-    
-
 #-----------------------------------------------------------------------------------------------------
 #Creando funcion para comparar boletos
 def comparar_boletas():
@@ -134,6 +134,7 @@ def comparar_boletas():
         else:
              print(f"Boleta {i + 1}: No ganó.")
              
+        #Para ver la boleta
         with open(file2 , "a") as archivo:
             archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo2} \n iguales: {coincidencias}\n")
             archivo.write("=" * 50)
@@ -162,13 +163,20 @@ def boleta_aleatoria(file):
         
     except FileExistsError:
         print("El archivo ya existe")
-    
-    
+#------------------------------------------------------------------------------------------------------
+''
+''
+
+                #Hago un file para que los datos de la boleta manual se vaya en el file2
+#-------------------------------------------------------------------------------------------------------    
 file2 = "boletas_manuales.txt"
 def boleta_manual(file2):
-    
+
+
+
+    #Manejo de excepción
     try:
-     with open(file2 , "x"):
+     with open(file2 , "x"): #Me ayuda a crearlo y cerrarlo automaticamente
         print(f"Archivo {file2} se creo bien")
     
     except FileExistsError:
@@ -176,23 +184,32 @@ def boleta_manual(file2):
         
         
 
+                    #Hago una función para poder leer las lineas del file aleatorio        
+#--------------------------------------------------------------------------------------------------------------
 def file_aleatorio(file):
+
+    #Manejo de excepciónes
     try:
         with open(file, "r"):
-         lineas = file.readlines()
+         lineas = file.readlines() #Leo las lineas del file aleatorio
          print(lineas)
         
             
             
     except FileNotFoundError:
-     print(f"El archivo no se enctra")
+     print(f"El archivo no se encuentra")
+   #-------------------------------------------------------------------------------------------------------
    
-   
+
+
+                        #Hago una funcióm para leer las lineas del file manual
+#------------------------------------------------------------------------------------------------------
 def file_manual(file2):
-    
+    #Manejo de excepciones
+
     try:
         with open(file2, "r"):
-            lineas = file2.readlines()
+            lineas = file2.readlines() #Lee las lineas del file
             print(lineas)
 
     except FileNotFoundError:
@@ -200,56 +217,61 @@ def file_manual(file2):
  #Fin de la creación        
 #----------------------------------------------------------------------------
 
+
+                    #Escoge si guardar la boleta en el file aleatorio
+#-------------------------------------------------------------------------------------------
 def escoger():
       try: 
        escoger = str(input("Desea continuar? De lo contrario perdería su boleta ".lower())) #lo convierto en lower la contestación
-                                      
+
        if escoger == "si":
         print("Excelente, su archivo tiene la boleta registrada")
         boleta_aleatoria(file)
-                                         
+
        elif escoger == "no":
          print("Muy bien, fue bueno entretenerse")
-                                         
+
        else:
         print("Tiene un error en su contestación")
       
       except FileExistsError:
-       print("Ocurrio un problema en la creación del archivo")
-                                         
+        print("Ocurrio un problema en la creación del archivo")
+
       except TypeError as typo:
        print(f"Parece que puso un {typo} y es (si o no)")
-                                         
+
       except Exception as error:
        print(f"Tuviste un error {error}, arreglalo")
-       
+#-----------------------------------------------------------------------------------------------
 
+
+
+                #Escoge si guardar la boleta en el file manual
+#------------------------------------------------------------------------------------------
 def escoger_boleta_manual():
       try: 
        escoger = str(input("Desea continuar? De lo contrario perdería su boleta ".lower())) #lo convierto en lower la contestación
-                                      
+
        if escoger == "si":
         print("Excelente, su archivo tiene la boleta registrada")
         boleta_manual(file)
-                                         
+
        elif escoger == "no":
          print("Muy bien, fue bueno entretenerse")
-                                         
+
        else:
         print("Tiene un error en su contestación")
       
       except FileExistsError:
        print("Ocurrio un problema en la creación del archivo")
-                                         
+
       except TypeError as typo:
        print(f"Parece que puso un {typo} y es (si o no)")
-                                         
+
       except Exception as error:
        print(f"Tuviste un error {error}, arreglalo")
-                                    
-    
-    
-        
+#-------------------------------------------------------------------------------------------------
+
 # Fin de la creación de boletas
 
 #----------------------------------------------------------------------------------------------
@@ -362,8 +384,7 @@ def main():
                                     print("Hubo un error al intentar seleccionar la opción deseada.")
                         except Exception as error:
                             print(f"Tiene un error llamado {error}, inténtalo más tarde por favor.")
-                    
-                    
+
 
                 #Saca 3
                 case "2":
@@ -385,6 +406,3 @@ def main():
 #--------------------------------------------------------------------------------------------
 #Llamada a la función Main para que el programa empiece con dicha función
 main()
-
-
-

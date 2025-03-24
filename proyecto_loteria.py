@@ -124,13 +124,13 @@ def creacion_boletas_loteria():
          #Variables y Listas:
          jugadas_aleatoria = []
          cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
-         for i in range(cantidad_jugadas):
-             
-            for j in range(6):
-                jugada = random.sample(range(0, 66),6)
-                print (f"Jugada {j + 1} añadida.")
-            jugadas_aleatoria.append(jugada)    
-            boleta_total.append(jugadas_aleatoria)
+         
+        #Ciclo for para las jugadas aleatorias
+         for j in range(cantidad_jugadas):
+             jugada = random.sample(range(0, 66),6)
+             print (f"Jugada {j + 1} añadida.")
+             jugadas_aleatoria.append(jugada)  # Se añaden las jugadas aleatorias en una sola lista 
+         boleta_total.append(jugadas_aleatoria) # Se añade a la lista de boletas total
             
          print(f"{jugadas_aleatoria}")
          print(f"{boleta_total}")
@@ -350,6 +350,7 @@ def main():
                                 '''
                                 # Llamando la función Limpiar_pantalla
                                 limpiar_pantalla()
+                                manual()
                                 aleatorio()
                                     
                             case "2":

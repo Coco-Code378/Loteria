@@ -38,9 +38,9 @@ def limpiar_pantalla():
 
 #-------------------------------------------------------------------------------------------------------
 #Funcion Principal de creación de boletas
-
+boleta_total = []
 def creacion_boletas_loteria():
-    boleta_total = []
+    
 
 #Funcion Secundaria para premios de lotería
 #---------------------------------------------------------------------------------------------------------
@@ -122,19 +122,44 @@ def creacion_boletas_loteria():
 #---------------------------------------------------------------------------------------------------------
     def aleatorio_loteria():
          #Variables y Listas:
-         jugadas_aleatoria = []
-         cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
-         
-        #Ciclo for para las jugadas aleatorias
-         for j in range(cantidad_jugadas):
-             jugada = random.sample(range(0, 66),6)
-             print (f"Jugada {j + 1} añadida.")
-             jugadas_aleatoria.append(jugada)  # Se añaden las jugadas aleatorias en una sola lista 
-         boleta_total.append(jugadas_aleatoria) # Se añade a la lista de boletas total
+       boleto = int(input("¿Cuántos boletos desea?: "))
+       boletas_aleatoria = [] # Lista local para almacenar las boletas generadas
+       coincidencias_totales = []
+        
+       numero = random.sample(range(0, 66), 6)  # Genera un número aleatorio de sorteo
+       print(f"El número aleatorio es: {numero}")
+        
+        # Comparar cada boleta existente con el número aleatorio generado
+       for i, boleta in enumerate(boleta_total):
+            coincidencias = set(boleta) & set(numero)  # Encuentra los números en común
+            coincidencias_totales.append(coincidencias)
+            if coincidencias:
+                print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+            else:
+                print(f"Boleta {i + 1}: No ganó.")
+                 
+                 
+       for i in range(boleto):
+         boleta = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
+         boleta_total.append(boleta)  # Agrega cada boleta al total global
+         boletas_aleatoria.append(boleta)  # Agrega a la lista local
+         print(f"Esta es tu boleta aleatoria: {boletas_aleatoria}")
+        
+           # Guardar los datos en un archivo
+       with open(file, "a") as archivo:
+          archivo.write(f"Su boleta es: {boletas_aleatoria}\n")
+          archivo.write(f"su boleta es: {boletas_aleatoria}\n la del sorteo es: {numero} \n iguales: {coincidencias_totales}\n")
+        
+          
+          archivo.write("=" * 50 + "\n")
+        
+     
+        
+        # Generar los boletos aleatorios solicitados
+       
             
-         print(f"{jugadas_aleatoria}")
-         print(f"{boleta_total}")
-         return jugadas_aleatoria
+            
+       return boleta_aleatoria
  #------------------------------------------------------------------------------------------------------------
  # Fin de la función Aleatoria
    
@@ -181,22 +206,125 @@ def creacion_boletas_loteria():
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 #Fin de la función creación de boletas de Lotería
 
+
+
+
+                            #Creo la funcion de boletas aleatorias
+#-------------------------------------------------------------------------------------------------------------------------------------------
+file = "boletas_aleatorias.txt"
+def boleta_aleatoria(file):
+    
+    #Comenzamos el manejo de errores pero por existencia
+    try: 
+     with open(file, "x") :#Me ayuda crear el archivo y cerrarlo automaticamente
+        print(f"Archivo {file} se creo bien")
+        
+    except FileExistsError:
+        print("El archivo ya existe")
+#-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+                                            #Creo la función de boletas manuales
+#-----------------------------------------------------------------------------------------------------------------------------------------
+file2 = "boletas_manuales.txt"
+def boleta_manual(file2):
+    
+    try:
+     with open(file2 , "x"):
+        print(f"Archivo {file2} se creo bien")
+    
+    except FileExistsError:
+        print("El archivo ya existe")
+      #----------------------------------------------------------------------------------------------------------------------------------------
+      
+        
+                                        #Leer las lineas en el file
+#----------------------------------------------------------------------------------------------------------------
+def file_aleatorio(file):
+    try:
+        with open(file, "r"):
+         lineas = file.readlines()
+         print(lineas)
+        
+            
+            
+    except FileNotFoundError:
+     print(f"El archivo no se enctra")
+   
+  
+  
+                                        #Leer las lineas en el file
+#---------------------------------------------------------------------------------------------------------------- 
+def file_manual(file2):
+    
+    try:
+        with open(file2, "r"):
+            lineas = file2.readlines()
+            print(lineas)
+
+    except FileNotFoundError:
+        print("El archivo no se encuentra")
+        
+        
+        
+        
+                                                #Función para escoger boleta manual
+#----------------------------------------------------------------------------------------------------------------
+def escoger_boleta_manual():
+      try: 
+       escoger = str(input("Desea continuar? De lo contrario perdería su boleta ".lower())) #lo convierto en lower la contestación
+                                      
+       if escoger == "si":
+        print("Excelente, su archivo tiene la boleta registrada")
+        boleta_manual(file)
+                                         
+       elif escoger == "no":
+         print("Muy bien, fue bueno entretenerse")
+                                         
+       else:
+        print("Tiene un error en su contestación")
+      
+      except FileExistsError:
+       print("Ocurrio un problema en la creación del archivo")
+                                         
+      except TypeError as typo:
+       print(f"Parece que puso un {typo} y es (si o no)")
+                                         
+      except Exception as error:
+       print(f"Tuviste un error {error}, arreglalo")
+#----------------------------------------------------------------------------------------------------------------                    
+    
+    
+    
+#generar numero random en sorteos
+def generar_sorteo():
+    return random.sample(range(0,66),6)
+    
+    #Fin de generar sorteo random
+#----------------------------------------------------------------------------------------------------
+            
+
+
+
 #Creación de la función para generar sorteos
 #-----------------------------------------------------------------------------------------------------
 def creacion_sorteos():
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  #Creación de la función secundaria para comparar boletas     
 #------------------------------------------------------------------------------------------------------   
     #Creando funcion para comparar boletos
-    def comparar_boletas(sorteo,total_boletas):
-
-        #Búcle para la comparación de boleta
-        for i, boleta in enumerate(total_boletas):
-            coincidencias = set(boleta) & set(sorteo)  # Comparamos cada boleta con el sorteo
-            if coincidencias:
-                print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}") #Compara las coindicencias
-            else:
-                print(f"Boleta {i + 1}: No ganó.")
+    
+        
 #------------------------------------------------------------------------------------------------------
 #fin de la función secundaria para generar sorteos para Loteria 
 
@@ -238,6 +366,25 @@ def creacion_sorteos():
     #Manejando función para la creación de archivos
 #------------------------------------------------------------------------------
 
+def comparar_boletas():
+
+     sorteo2 = generar_sorteo()
+     print(f"Sorteo generado: {sorteo2}")
+     print("\nComparación de Boletas:")
+    #Búcle para la comparación de boleta
+     for i, boleta in enumerate(boleta_total):
+        coincidencias = set(boleta) & set(sorteo2)  # Comparamos cada boleta con el sorteo
+        
+       
+        if coincidencias:
+             print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}") #Compara las coindicencias
+           
+        else:
+             print(f"Boleta {i + 1}: No ganó.")
+             
+        with open(file2 , "a") as archivo:
+            archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo2} \n iguales: {coincidencias}\n")
+            archivo.write("=" * 50)
 file = "boletas.txt"
 def crear_archivo(file):
     
@@ -344,14 +491,29 @@ def main():
                         
                         match opcion_loteria:
                             case "1":
-                                '''
-                                Jorge, esta parte te la dejaré a ti, lo que debes de hacer es implementar el menu donde indique si el usuario quiere jugar manual o automático.
-                                Inténtalo realizarlo con un while true y con un try y except. Para implementar el menu para boletas, solo tienes que llamarla: boletas()
-                                '''
-                                # Llamando la función Limpiar_pantalla
-                                limpiar_pantalla()
-                                manual()
-                                aleatorio()
+                                 try:
+                                      boletas()
+                                      choose = int(input("Escoja entre (1) o (2): "))
+                                     
+                                      if choose == 1:
+                                         limpiar_pantalla()
+                                         aleatorio()
+                            
+                                        
+                                         
+                                      elif choose == 2 :
+                                        limpiar_pantalla()
+                                        manual()
+                                        sorteo = generar_sorteo()
+                                        print(f"El sorteo es: {sorteo}")
+                                        comparar_boletas()
+                                          
+                                      else:
+                                         print("Opción no valida, Escoja entre (1) o (2)")
+                                         
+                                 except TypeError as typo:
+                                       print(f"Tiene un error {typo}")
+                                 break
                                     
                             case "2":
                                 print(f"\n {"-" * 15} Sorteos {"-" * 15}\n")

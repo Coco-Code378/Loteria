@@ -1,0 +1,4 @@
+Su boleta es: [[3, 43, 64, 48, 41, 47]]
+El numero del sorteo es: [45, 18, 32, 12, 23, 14]
+Coincidencias totales: [set()]
+==================================================

@@ -13,6 +13,22 @@ def boleta_aleatoria(file):
         print("El archivo ya existe")
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
+                       #Creo la funcion de boletas aleatorias en revancha
+#-------------------------------------------------------------------------------------------------------------------------------------------
+file_revancha = "boletas_aleatorias revancha.txt"
+def boleta_aleatoria(file_revancha):
+    
+    #Comenzamos el manejo de errores pero por existencia
+    try: 
+     with open(file_revancha, "x") :#Me ayuda crear el archivo y cerrarlo automaticamente
+        print(f"Archivo {file_revancha} se creo bien")
+        
+    except FileExistsError:
+        print("El archivo ya existe")
+#-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
                                             #Creo la función de boletas manuales
 #-----------------------------------------------------------------------------------------------------------------------------------------

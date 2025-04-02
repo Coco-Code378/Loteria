@@ -155,53 +155,115 @@ def creacion_boletas_loteria():
  
                 #Función para aleatorio en revancha
 #-------------------------------------------------------------------------------------------------------------
+
     def aleatorio_loteria_revancha():
+      print(f"{'Bienvenidos a su boleta con revancha\n'}")
+    
+ 
+    
+      try:
+        # Pedir número de boletos con validación
+        while True:
+            boleto = int(input("¿Cuántos boletos desea? (solo puede escoger entre 1 a 2 boletas): "))
+            if boleto in [1, 2]:
+                break
+            else:
+                print("Por favor, ingrese un número válido entre 1 y 2.")
         
-       print(f"{'Bienvenidos a su boleta con revancha\n'}")
+        #Listas
+        boletas_aleatoria = []  
+        coincidencias_totales = []  
         
+        # Generar número aleatorio de sorteo
+        numero = random.sample(range(0, 66), 6)
+        print(f"El numero aleatorio del sorteo es: {numero}")
         
+        # Generar las boletas y compararlas
+        for i in range(boleto):
+            boleta = random.sample(range(0, 66), 6) 
+            boleta_total.append(boleta) 
+            boletas_aleatoria.append(boleta) 
+            print(f"Boleta {i + 1}: {boleta}")
         
-        
-         #Variables y Listas:
-       boleto = int(input("¿Cuántos boletos desea?: "))
-       boletas_aleatoria = [] # Lista local para almacenar las boletas generadas
-       coincidencias_totales = []
-        
-       numero = random.sample(range(0, 66), 6)  # Genera un número aleatorio de sorteo
-       print(f"El número aleatorio es: {numero}")
-       for i in range(boleto):
-         boleta = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
-         boleta_total.append(boleta)  # Agrega cada boleta al total global
-         boletas_aleatoria.append(boleta)  # Agrega a la lista local
-         print(f"Esta es tu boleta aleatoria: {boletas_aleatoria}")
-        
-        # Comparar cada boleta existente con el número aleatorio generado
-       for i, boleta in enumerate(boleta_total):
-            coincidencias = set(boleta) & set(numero)  # Encuentra los números en común
+        # Comparar cada boleta con el número aleatorio generado
+        for i, boleta in enumerate(boleta_total):
+            coincidencias = set(boleta) & set(numero) 
             coincidencias_totales.append(coincidencias)
             if coincidencias:
-                print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+                print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} numero(s), coincidencias: {sorted(coincidencias)}")
             else:
-                print(f"Boleta {i + 1}: No ganó.")
-                
-                
-                 
-                 
-      
-           # Guardar los datos en un archivo
-       with open(file_revancha, "a") as archivo:
-          archivo.write(f"Su boleta es: {boletas_aleatoria}\n")
-          archivo.write(f"El numero del sorteo es: {numero}\n")
-          archivo.write(f"Coincidencias totales: {coincidencias_totales}\n")
-          archivo.write("=" * 50 + "\n")
+                print(f"Boleta {i + 1}: No gano.")
         
-      
+        # Guardar los datos en un archivo
+        with open(file_revancha, "a") as archivo:
+            archivo.write(f"Boletas generadas: {boletas_aleatoria}\n")
+            archivo.write(f"Numero del sorteo: {numero}\n")
+            archivo.write(f"Coincidencias totales: {coincidencias_totales}\n")
+            archivo.write("=" * 50 + "\n")
+        print("Se guardaron los datos.")
+    
+      except ValueError:
+        print("Error: Por favor ingrese un número válido.")
+        
+        return aleatorio_loteria_revancha
+#------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        
+        
+                                                #Función para la revancha en saca 3
+#---------------------------------------------------------------------------------------------------------------------------------------------------
+    def aleatorio_loteria_revancha_saca3():
+     print(f"{'Bienvenidos a su boleta con revancha\n'}")
+    
  
- 
- 
- 
+    
+     try:
+        # Pedir número de boletos con validación
+        while True:
+            boleto = int(input("¿Cuántos boletos desea? (solo puede escoger entre 1 a 2 boletas): "))
+            if boleto in [1, 2]:
+                break
+            else:
+                print("Por favor, ingrese un número válido entre 1 y 2.")
+        #Listas
+        boletas_aleatoria = []  
+        coincidencias_totales = [] 
+        
+        # Generar número aleatorio de sorteo
+        numero = random.sample(range(0, 9), 3)
+        print(f"El numero aleatorio del sorteo es: {numero}")
+        
+        # Generar las boletas y compararlas
+        for i in range(boleto):
+            boleta = random.sample(range(0, 9), 3)
+            boleta_total.append(boleta) 
+            boletas_aleatoria.append(boleta) 
+            print(f"Boleta {i + 1}: {boleta}")
+        
+        # Comparar cada boleta con el número aleatorio generado
+        for i, boleta in enumerate(boleta_total):
+            coincidencias = set(boleta) & set(numero) 
+            coincidencias_totales.append(coincidencias)
+            if coincidencias:
+                print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} numero(s), coincidencias: {sorted(coincidencias)}")
+            else:
+                print(f"Boleta {i + 1}: No gano.")
+        
+        # Guardar los datos en un archivo
+        with open(file_revancha_saca3, "a") as archivo:
+            archivo.write(f"Boletas generadas: {boletas_aleatoria}\n")
+            archivo.write(f"Numero del sorteo: {numero}\n")
+            archivo.write(f"Coincidencias totales: {coincidencias_totales}\n")
+            archivo.write("=" * 50 + "\n")
+        print("Se guardaron los datos.")
+    
+     except ValueError:
+        print("Error: Por favor ingrese un número válido.")
+        
+        return aleatorio_loteria_revancha_saca3
    
-#Función Secundaria para Manual
+                    	#Función Secundaria para Manual
 #-----------------------------------------------------------------------------------------------------------
     def manual_loteria():
         #Variables y listas
@@ -236,7 +298,13 @@ def creacion_boletas_loteria():
                 break
             except ValueError as value:
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
-                
+#-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+    	                                        #Función para hacer el saca 3                
+#-----------------------------------------------------------------------------------------------------------------------------------------
     def manual_saca3():
          cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
 
@@ -277,7 +345,7 @@ def creacion_boletas_loteria():
     #Fin de la función Manual
     
     #Returns de la función Creación_Boletas:
-    return aleatorio_loteria,aleatorio_loteria_revancha, manual_loteria, boleta_total, premios_loteria, premios_saca3,manual_saca3
+    return aleatorio_loteria,aleatorio_loteria_revancha,aleatorio_loteria_revancha_saca3, manual_loteria, boleta_total, premios_loteria, premios_saca3,manual_saca3
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 #Fin de la función creación de boletas de Lotería
 
@@ -398,6 +466,29 @@ def comparar_boletas():
             
             archivo.write("=" * 50)
 #-----------------------------------------------------------------------------------------------------------------
+
+
+def comparar_boletas_manual():
+
+     sorteo2 = generar_sorteo()
+     print(f"Sorteo generado: {sorteo2}")
+     print("\nComparación de Boletas:")
+    #Búcle para la comparación de boleta
+     for i, boleta in enumerate(boleta_total):
+        coincidencias = set(boleta) & set(sorteo2)  # Comparamos cada boleta con el sorteo
+        
+       
+        if coincidencias:
+             print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}") #Compara las coindicencias
+           
+        else:
+             print(f"Boleta {i + 1}: No ganó.")
+             
+        with open(file2 , "a") as archivo:
+            archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo2} \n iguales: {coincidencias}\n")
+            
+            archivo.write("=" * 50)
+#-----------------------------------------------------------------------------------------------------------------
                                 
    
                                    #Función para el case 3 de Reportes
@@ -438,7 +529,7 @@ def escoger():
 def main():
     #Referencias de funciones:
     principal, juego, boletas = menu()
-    aleatorio,aleatorio_revancha, manual, total_boletas,premios_loteria, premios_saca3, manual_saca3= creacion_boletas_loteria()
+    aleatorio,aleatorio_revancha,aleatorio_revancha_saca3, manual, total_boletas,premios_loteria, premios_saca3, manual_saca3= creacion_boletas_loteria()
     comparar, generarloteria, generarsaca3  = creacion_sorteos()
     
     while True:
@@ -512,7 +603,7 @@ def main():
                                         print(f"El sorteo es: {sorteo}")
                                         
                                         #Lo lleva a la función de comparación de boletas
-                                        comparar_boletas()
+                                        comparar_boletas_manual()
                                           
                                       else:
                                          print("Opción no valida, Escoja entre (1) o (2)")
@@ -531,32 +622,14 @@ def main():
                             case "2":
                                 
                                 
-                                      boletas()
-                                      choose = int(input("Escoja entre (1) o (2): "))
                                 
                                                     #Este case se encarga de limpiar y brincar a la función de aleatorio
-                                     #----------------------------------------------------------------------------------------------------------------
-                                      if choose == 1:
+                                     #---------------------------------------------------------------------------------------------------------------
                                          limpiar_pantalla()
                                          #Lo lleva a la función aleatorio para llevar al file los datos de la boleta aleatoria
                                          aleatorio_revancha()
                             
                                         
-                                        
-                                                    #Este segundo case es por si el usuario escoge la opción manual
-                                    #------------------------------------------------------------------------------------------------------------------------
-                                      elif choose == 2 :
-                                        limpiar_pantalla()
-                                        
-                                        #Lo lleva a escoger los numeros que desea para subirlo a la boleta
-                                        manual()
-                                        
-                                        #Este lo lleva a una función para generar sorteo aleatoriamente
-                                        sorteo = generar_sorteo() 
-                                        print(f"El sorteo es: {sorteo}")
-                                        
-                                        #Lo lleva a la función de comparación de boletas
-                                        comparar_boletas()
                                           
                             
                             
@@ -673,7 +746,9 @@ def main():
                                #Este es el segundo case para la boleta con revancha
                     #----------------------------------------------------------------------------------------------------------------------------------
                         case "2":
-                            pass
+                            limpiar_pantalla()
+                            
+                            aleatorio_revancha_saca3()
                         
                         
                                #Este es el tercero case para generar sorteos

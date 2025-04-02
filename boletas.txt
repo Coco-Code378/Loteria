@@ -1,4 +1,4 @@
-Su boleta es: [[44, 49, 62, 38, 7, 50]]
-El numero del sorteo es: [33, 39, 61, 57, 50, 46]
-Coincidencias totales: [{50}]
+Su boleta es: [[21, 39, 63, 55, 51, 65]]
+El numero del sorteo es: [46, 62, 63, 14, 61, 36]
+Coincidencias totales: [{36}, {63}]
 ==================================================

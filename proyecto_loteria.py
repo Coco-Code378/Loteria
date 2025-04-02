@@ -116,6 +116,7 @@ def creacion_boletas_loteria():
        boleto = int(input("¿Cuántos boletos desea?: "))
        boletas_aleatoria = [] # Lista local para almacenar las boletas generadas
        coincidencias_totales = []
+      
         
        numero = random.sample(range(0, 66), 6)  # Genera un número aleatorio de sorteo
        print(f"El número aleatorio es: {numero}")
@@ -129,11 +130,29 @@ def creacion_boletas_loteria():
        for i, boleta in enumerate(boleta_total):
             coincidencias = set(boleta) & set(numero)  # Encuentra los números en común
             coincidencias_totales.append(coincidencias)
+            premio = " "
             if coincidencias:
                 print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+                
+                
+                if len(coincidencias) == 3:
+                    premio ="Felicidades, acertaste 3 numeros y ganaste un boleto gratis"
+                    
+                elif len(coincidencias) == 4:
+                    premio = "Felicidades, acertaste 4 numeros y ganaste 75,000 dólares"
+                elif len(coincidencias) == 5:
+                    premio = "Felicidades, acertaste 5 numeros y ganaste 300,000 dólares"
+                            
+                elif len(coincidencias) == 6:
+                    premio = "Felicidades, acertaste todos los numero y ganaste EL MILLON"
+                                
+                else:
+                    premio = "Lo siento, no llegaste"
+                      
             else:
                 print(f"Boleta {i + 1}: No ganó.")
-                 
+                
+               
                  
       
            # Guardar los datos en un archivo
@@ -141,6 +160,7 @@ def creacion_boletas_loteria():
           archivo.write(f"Su boleta es: {boletas_aleatoria}\n")
           archivo.write(f"El numero del sorteo es: {numero}\n")
           archivo.write(f"Coincidencias totales: {coincidencias_totales}\n")
+          archivo.write(f"Este fue su premio: {premio}\n")
           archivo.write("=" * 50 + "\n")
         
      
@@ -183,6 +203,7 @@ def creacion_boletas_loteria():
             boleta = random.sample(range(0, 66), 6) 
             boleta_total.append(boleta) 
             boletas_aleatoria.append(boleta) 
+            premio = " "
             print(f"Boleta {i + 1}: {boleta}")
         
         # Comparar cada boleta con el número aleatorio generado
@@ -191,6 +212,26 @@ def creacion_boletas_loteria():
             coincidencias_totales.append(coincidencias)
             if coincidencias:
                 print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} numero(s), coincidencias: {sorted(coincidencias)}")
+                
+               
+                if coincidencias:
+                 print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+                
+                
+                 if len(coincidencias) == 3:
+                      premio ="Felicidades, acertaste 3 numeros y ganaste un boleto gratis"
+                    
+                 elif len(coincidencias) == 4:
+                      premio = "Felicidades, acertaste 4 numeros y ganaste 75,000 dólares"
+                 elif len(coincidencias) == 5:
+                    premio = "Felicidades, acertaste 5 numeros y ganaste 300,000 dólares"
+                            
+                 elif len(coincidencias) == 6:
+                    premio = "Felicidades, acertaste todos los numero y ganaste EL MILLON"
+                                
+                 else:
+                    premio = "Lo siento, no llegaste"
+                
             else:
                 print(f"Boleta {i + 1}: No gano.")
         
@@ -199,6 +240,7 @@ def creacion_boletas_loteria():
             archivo.write(f"Boletas generadas: {boletas_aleatoria}\n")
             archivo.write(f"Numero del sorteo: {numero}\n")
             archivo.write(f"Coincidencias totales: {coincidencias_totales}\n")
+            archivo.write(f"Su premio es: {premio}")
             archivo.write("=" * 50 + "\n")
         print("Se guardaron los datos.")
     
@@ -245,16 +287,37 @@ def creacion_boletas_loteria():
         for i, boleta in enumerate(boleta_total):
             coincidencias = set(boleta) & set(numero) 
             coincidencias_totales.append(coincidencias)
+            premio = " "
             if coincidencias:
                 print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} numero(s), coincidencias: {sorted(coincidencias)}")
+                
+                if coincidencias:
+                   print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+                
+                
+                   if len(coincidencias) == 3:
+                    premio ="Felicidades, acertaste 3 numeros y ganaste un boleto gratis"
+                    
+                   elif len(coincidencias) == 4:
+                    premio = "Felicidades, acertaste 4 numeros y ganaste 75,000 dólares"
+                   elif len(coincidencias) == 5:
+                    premio = "Felicidades, acertaste 5 numeros y ganaste 300,000 dólares"
+                            
+                   elif len(coincidencias) == 6:
+                    premio = "Felicidades, acertaste todos los numero y ganaste EL MILLON"
+                                
+                   else:
+                    premio = "Lo siento, no llegaste"
+                      
             else:
-                print(f"Boleta {i + 1}: No gano.")
+                print(f"Boleta {i + 1}: No ganó.")
         
         # Guardar los datos en un archivo
         with open(file_revancha_saca3, "a") as archivo:
             archivo.write(f"Boletas generadas: {boletas_aleatoria}\n")
             archivo.write(f"Numero del sorteo: {numero}\n")
             archivo.write(f"Coincidencias totales: {coincidencias_totales}\n")
+            archivo.write(f"Su premio es: {premio}")
             archivo.write("=" * 50 + "\n")
         print("Se guardaron los datos.")
     

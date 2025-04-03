@@ -4,10 +4,11 @@
 #Jorge Maldonado
 
 #librerias
+import os
 import random #importamos la libreria random
 from files import *
 from menu import *
-from limpiar_pantalla import *
+
 
 #Variables
 data_dir = "data" 
@@ -27,87 +28,23 @@ data_dir = "data"
 
                                         #Creación del programa
 #-----------------------------------------------------------------------------------------------------
+#Función para detectar y limpiar terminal dependiendo del sistema operativo
+def limpiar_pantalla():
+    # Detecta el sistema operativo y usa el comando correspondiente
+    if os.name == 'nt':  # Para Windows
+        os.system('cls')
+    else:  # Para (Linux, macOS)
+        os.system('clear')
+# Fin de la función Limpiar_Pantalla
+#-------------------------------------------------------------------------------------------------------
 
-#Funcion Principal de creación de boletas
-boleta_total = []
+ #Funcion Principal de creación de boletas para lotería
+boleta_total_loteria = []
+
+#-------------------------------------------------------------------------------------------------------
+
 def creacion_boletas_loteria():
-    
-
-#Funcion Secundaria para premios de lotería
-#---------------------------------------------------------------------------------------------------------
-    def premios_loteria():
-    #Tabla para hacer print a los premios principales
-    #Columnas:
-        print("+--------------------------------------+")
-        print("|                 Premios              |")
-        print("+--------------------------------------+")
-        print("| Sorteo Principal      |    Premio    |")
-        print("+--------------------------------------+")
-    
-    # Filas:
-        print("| Acierta los 6 números | 1,000,000.00 |")
-        print("+--------------------------------------+")
-        print("|  Acierta 5 números    | 300,000.00   |")
-        print("+--------------------------------------+")
-        print("|  Acierta 4 números    | 75,0000.00   |")
-        print("+--------------------------------------+")
-        print("|  Acierta 3 números    |  1  boleto   |")
-        print("+--------------------------------------+")
-
-    #Tabla para hacer print a los premios de revancha
-    #Columnas:
-        print("+--------------------------------------+")
-        print("|         Premios  de  Revancha        |")
-        print("+--------------------------------------+")
-        print("|     Revancha      |      Premio      |")
-        print("+--------------------------------------+")
-    
-    # Filas:
-        print("| Acierta los 6 números | 500,000.00   |")
-        print("+--------------------------------------+")
-        print("|  Acierta 5 números    | 100,000.00   |")
-        print("+--------------------------------------+")
-        print("|  Acierta 4 números    | 25,0000.00   |")
-        print("+--------------------------------------+")
- #------------------------------------------------------------------------------------------------------------
- # Fin de la función de premios para Loteria      
-
-#Funcion Secundaria para premios de lotería
-#---------------------------------------------------------------------------------------------------------
-    def premios_saca3():
-    #Tabla para hacer print a los premios principales
-    #Columnas:
-        print("+------------------------------------------------------------+")
-        print("|                                Premios                     |")
-        print("+------------------------------------------------------------+")
-        print("|            Sorteo Principal         |        Premio        |")
-        print("+------------------------------------------------------------+")
-    
-    # Filas: 
-        print("| Exacta(3 números en orden correcto) |        100,000.00    |")
-        print("+------------------------------------------------------------+")
-        print("|             Combinada               |         25,000.00    |")
-        print("| (3 números en cualquier orden)      |                      |")
-        print("+------------------------------------------------------------+")
-        
-
-     #Tabla para hacer print a los premios revancha
-    #Columnas:
-        print("+------------------------------------------------------------+")
-        print("|                                Premios                     |")
-        print("+------------------------------------------------------------+")
-        print("|              Revancha              |        Premio         |")
-        print("+------------------------------------------------------------+")
-    
-    # Filas: 
-        print("| Exacta(3 números en orden correcto) |        25,000.00     |")
-        print("+------------------------------------------------------------+")
-        print("|             Combinada               |        12,500.00     |")
-        print("| (3 números en cualquier orden)      |                      |")
-        print("+------------------------------------------------------------+")
-        
- #------------------------------------------------------------------------------------------------------------
- # Fin de la función de premios para Loteria      
+   
 
 #Funcion Secundaria para Aleatorio
 #---------------------------------------------------------------------------------------------------------
@@ -122,12 +59,12 @@ def creacion_boletas_loteria():
        print(f"El número aleatorio es: {numero}")
        for i in range(boleto):
          boleta = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
-         boleta_total.append(boleta)  # Agrega cada boleta al total global
+         boleta_total_loteria.append(boleta)  # Agrega cada boleta al total global
          boletas_aleatoria.append(boleta)  # Agrega a la lista local
          print(f"Esta es tu boleta aleatoria: {boletas_aleatoria}")
         
         # Comparar cada boleta existente con el número aleatorio generado
-       for i, boleta in enumerate(boleta_total):
+       for i, boleta in enumerate(boleta_total_loteria):
             coincidencias = set(boleta) & set(numero)  # Encuentra los números en común
             coincidencias_totales.append(coincidencias)
             premio = " "
@@ -179,8 +116,6 @@ def creacion_boletas_loteria():
     def aleatorio_loteria_revancha():
       print(f"{'Bienvenidos a su boleta con revancha\n'}")
     
- 
-    
       try:
         # Pedir número de boletos con validación
         while True:
@@ -201,13 +136,13 @@ def creacion_boletas_loteria():
         # Generar las boletas y compararlas
         for i in range(boleto):
             boleta = random.sample(range(0, 66), 6) 
-            boleta_total.append(boleta) 
+            boleta_total_loteria.append(boleta) 
             boletas_aleatoria.append(boleta) 
             premio = " "
             print(f"Boleta {i + 1}: {boleta}")
         
         # Comparar cada boleta con el número aleatorio generado
-        for i, boleta in enumerate(boleta_total):
+        for i, boleta in enumerate(boleta_total_loteria):
             coincidencias = set(boleta) & set(numero) 
             coincidencias_totales.append(coincidencias)
             if coincidencias:
@@ -279,12 +214,12 @@ def creacion_boletas_loteria():
         # Generar las boletas y compararlas
         for i in range(boleto):
             boleta = random.sample(range(0, 9), 3)
-            boleta_total.append(boleta) 
+            boleta_total_loteria.append(boleta) 
             boletas_aleatoria.append(boleta) 
             print(f"Boleta {i + 1}: {boleta}")
         
         # Comparar cada boleta con el número aleatorio generado
-        for i, boleta in enumerate(boleta_total):
+        for i, boleta in enumerate(boleta_total_loteria):
             coincidencias = set(boleta) & set(numero) 
             coincidencias_totales.append(coincidencias)
             premio = " "
@@ -326,19 +261,35 @@ def creacion_boletas_loteria():
         
         return aleatorio_loteria_revancha_saca3
    
-                    	#Función Secundaria para Manual
+                    	#Función Secundaria para Manual Loteria
 #-----------------------------------------------------------------------------------------------------------
     def manual_loteria():
         #Variables y listas
+        precio_jugada = 0
+        precio_revancha = 0
+        
+        
+        #Prints 
+        print(f"{"=" * 8} Costos: {"=" * 8}")
+        print(f"Cada jugada cuesta $2.00")
+        print(f"Cada revancha cuesta $1.00")
+ 
+        #Variable para la cantidad de jugadas
         cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
-
+        
+        #inicializando las jugadas en una lista
         jugadas = []
         while True:
             try:
+               
                 for i in range(cantidad_jugadas):
+                    
+                    #Listas inicializadas en el For
+                    precio_jugada += 2
                     valores_jugadas = []
                     valores_unicos = set()
-        
+                    revanchas = []
+                    
                     for j in range(6):
                         while True:
                             numeros = int(input(f"Ingrese un valor: {j + 1} del 0 al {66 - 1} en la jugada {i + 1}, (No se puede repetir): "))
@@ -351,22 +302,42 @@ def creacion_boletas_loteria():
                                     break  
                                 else:
                                     print(f"\n No se puede repetir el valor {numeros}, por favor inténtelo de nuevo")
-                            else:
+                            elif numeros == "":
                                 print("\n Elegiste un número no correspondido a lo que se pide.")    
+                    opcion = input("¿Deseas incluir esta jugada como revancha? (Si/No): ")
+                    opcion = opcion.capitalize()
+                    if opcion == "Si":
+                        precio_revancha += 1
+                        revanchas.append(jugadas)
+                        boleta_total_loteria.append(revanchas)
+                        print("\nLa jugada fue añadida para Revancha")
+                    else:
+                        print("\nLa jugada no fue añadida como revancha")   
+
+                    #Ingresando y limpiando las listas
                     valores_unicos.clear()             
                     jugadas.append(valores_jugadas)
-                    boleta_total.append(valores_jugadas)
+                    boleta_total_loteria.append(jugadas)
                 
-                print(f"Boletas manuales ingresadas: {jugadas}")
+                #Limpiar pantalla para mejor visualización
+                limpiar_pantalla()
+                precio_total = precio_jugada + precio_revancha
+                print(f"\nJugadas manuales ingresadas: {jugadas}")
+                print(f"\nJugadas con Revancha: {revanchas}")
+                print(f"\nPrecio total: ${precio_total}")
                 break
+           
+                
             except ValueError as value:
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
+         #Cerrando el ciclo While True
+              
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
-    	                                        #Función para hacer el saca 3                
+    	                                        #Función para hacer Manual saca 3               
 #-----------------------------------------------------------------------------------------------------------------------------------------
     def manual_saca3():
          cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
@@ -394,7 +365,7 @@ def creacion_boletas_loteria():
                                 print("\n Elegiste un número no correspondido a lo que se pide.")    
                     valores_unicos.clear()             
                     jugadas.append(valores_jugadas)
-                    boleta_total.append(valores_jugadas)
+                    boleta_total_loteria.append(valores_jugadas)
                 
                 print(f"Boletas manuales ingresadas: {jugadas}")
                 break
@@ -402,13 +373,13 @@ def creacion_boletas_loteria():
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
             
             
-            return manual_saca3
+            
             
     #--------------------------------------------------------------------------------------------------------------------------------------------------
     #Fin de la función Manual
     
     #Returns de la función Creación_Boletas:
-    return aleatorio_loteria,aleatorio_loteria_revancha,aleatorio_loteria_revancha_saca3, manual_loteria, boleta_total, premios_loteria, premios_saca3,manual_saca3
+    return aleatorio_loteria,aleatorio_loteria_revancha,aleatorio_loteria_revancha_saca3, manual_loteria, boleta_total_loteria, manual_saca3
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 #Fin de la función creación de boletas de Lotería
 
@@ -514,7 +485,7 @@ def comparar_boletas():
      print(f"Sorteo generado: {sorteo2}")
      print("\nComparación de Boletas:")
     #Búcle para la comparación de boleta
-     for i, boleta in enumerate(boleta_total):
+     for i, boleta in enumerate(boleta_total_loteria):
         coincidencias = set(boleta) & set(sorteo2)  # Comparamos cada boleta con el sorteo
         
        
@@ -537,7 +508,7 @@ def comparar_boletas_manual():
      print(f"Sorteo generado: {sorteo2}")
      print("\nComparación de Boletas:")
     #Búcle para la comparación de boleta
-     for i, boleta in enumerate(boleta_total):
+     for i, boleta in enumerate(boleta_total_loteria):
         coincidencias = set(boleta) & set(sorteo2)  # Comparamos cada boleta con el sorteo
         
        
@@ -591,8 +562,8 @@ def escoger():
 #Función para el programa Main
 def main():
     #Referencias de funciones:
-    principal, juego, boletas = menu()
-    aleatorio,aleatorio_revancha,aleatorio_revancha_saca3, manual, total_boletas,premios_loteria, premios_saca3, manual_saca3= creacion_boletas_loteria()
+    principal, juego, boletas, premios_loteria, premios_saca3 = menu()
+    aleatorio_loteria,aleatorio_revancha,aleatorio_revancha_saca3, manual_loteria, total_boletas, manual_saca3= creacion_boletas_loteria()
     comparar, generarloteria, generarsaca3  = creacion_sorteos()
     
     while True:
@@ -618,7 +589,7 @@ def main():
                         
                                                 # Llamando la función menu_loteria   
                         #-----------------------------------------------------------------------------------------------------
-                        
+                        print(f"{"=" * 40} Loteria {"=" * 40}")
                         juego()
                         opcion_loteria = str(input("\n Elige la opción a seleccionar: "))
                         
@@ -626,79 +597,55 @@ def main():
                                                         #segundo case por si marca la opción "1"
                         #------------------------------------------------------------------------------------------------------------------
                         match opcion_loteria:
+
+                                #Comprar boletas
                             case "1":
                                  try:
+                                      limpiar_pantalla()
+                                      
                                       boletas()
-                                      choose = int(input("Escoja entre (1) o (2): "))
+                                      choose = input("Seleccione su opción): ")
                                      
-                                     
-                                    
-                                                                    
-                                      """Te dejare los comentarios para el case nuevo que vayas hacer Christian (Dile a chatgpt que arrele la sintaxis)
-                                      Digo que lo arregle porque al colocar el match case tendras que darle un salto a gran parte del
-                                      código.
-                                      """
-                                                                   
+                                      match choose:
+                                          
+                                          #Case para seleccionar de forma manual las jugadas
+                                          case "1":
+                                              limpiar_pantalla()
+                                              print(f"{"-" * 15} Manual {"-" * 15}")
+                                              
+                                              manual_loteria()
+
+                                              #Este lo lleva a una función para generar sorteo aleatoriamente
+                                              sorteo = generar_sorteo() 
+                                              print(f"El sorteo es: {sorteo}")
+                                        
+                                              #Lo lleva a la función de comparación de boletas
+                                              comparar_boletas_manual()
+                                              
+                                          #Case para seleccionar de forma aleatoria las jugadas
+                                          case "2":
+                                                limpiar_pantalla()
+                                                print(f"{"-" * 15} Aleatorio {"-" * 15}")       
+
+                                                aleatorio_loteria() 
+                                                       
+                                          case _:
+                                               print("Hubo un error al intentar seleccionar la opción deseada.")
                                                              #Tercer Match Case para que el usuario escoga entre aleatorio o manual
                                      #-------------------------------------------------------------------------------------------------------
                                      
-                                     
-                                                    #Este case se encarga de limpiar y brincar a la función de aleatorio
-                                     #----------------------------------------------------------------------------------------------------------------
-                                      if choose == 1:
-                                         limpiar_pantalla()
-                                         
-                                         #Lo lleva a la función aleatorio para llevar al file los datos de la boleta aleatoria
-                                         aleatorio()
-                            
-                                        
-                                        
-                                                    #Este segundo case es por si el usuario escoge la opción manual
-                                    #------------------------------------------------------------------------------------------------------------------------
-                                      elif choose == 2 :
-                                        limpiar_pantalla()
-                                        
-                                        #Lo lleva a escoger los numeros que desea para subirlo a la boleta
-                                        manual()
-                                        
-                                        #Este lo lleva a una función para generar sorteo aleatoriamente
-                                        sorteo = generar_sorteo() 
-                                        print(f"El sorteo es: {sorteo}")
-                                        
-                                        #Lo lleva a la función de comparación de boletas
-                                        comparar_boletas_manual()
-                                          
-                                      else:
-                                         print("Opción no valida, Escoja entre (1) o (2)")
                                          
                                  except TypeError as typo:
                                        print(f"Tiene un error {typo}")
-                                 break
+                                 
                              #-------------------------------------------------------------------------------------------------------------------------------
-                             
-                             
-                           
-                           
-                           
-                                    #Este es el case para comprar boleta con revancha
-                           #----------------------------------------------------------------------------------------------------------------------------------
-                            case "2":
-                                
-                                
-                                
-                                                    #Este case se encarga de limpiar y brincar a la función de aleatorio
-                                     #---------------------------------------------------------------------------------------------------------------
-                                         limpiar_pantalla()
-                                         #Lo lleva a la función aleatorio para llevar al file los datos de la boleta aleatoria
-                                         aleatorio_revancha()
                             
-                                        
                                           
                             
                             
                              #Este es el tercer case del segundo match case para generar sorteo aleatoriamente
                              #--------------------------------------------------------------------------------------------------------------------------------       
-                            case "3":
+                            case "2":
                                 print(f"\n {"-" * 15} Generar Sorteo {"-" * 15}\n")
                                 
                                 
@@ -713,7 +660,7 @@ def main():
                                     
                                     #Este es el cuarto case del segundo Match Case para los reportes
                             #------------------------------------------------------------------------------------------------------------------------------------
-                            case "4":
+                            case "3":
                                 print(f"\n {"-" * 15} Reportes {"-" * 15}\n")
                                      
                                 print("Le vamos a crear un archivo con las boletas\n")
@@ -724,7 +671,7 @@ def main():
                                 
                                      #Función para salir del programa
                             #------------------------------------------------------------------------------------------------------------------------------------         
-                            case "5":
+                            case "4":
                                 print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
                                 break
                             

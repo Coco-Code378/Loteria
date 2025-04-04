@@ -317,7 +317,7 @@ def main():
                                     limpiar_pantalla()
 
                                     print(f"\n {"-" * 15} Creación de Boletas Manuales: {"-" * 15}\n")
-                                    manual_saca3()
+                                    
                                     
                                     
                                     
@@ -338,7 +338,7 @@ def main():
                         case "2":
                             limpiar_pantalla()
                             
-                            aleatorio_revancha_saca3()
+                            
                         
                         
                                #Este es el tercero case para generar sorteos

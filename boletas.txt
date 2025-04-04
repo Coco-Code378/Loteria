@@ -1,17 +1,22 @@
-Su boleta es: [[47, 32, 7, 12, 30, 53]]
+
+
+Boleta 1:
+Su jugada 1 es: [[47, 32, 7, 12, 30, 53]]
 El numero del sorteo es: [24, 40, 3, 49, 46, 21]
 Coincidencias totales: [set()]
-Su boleta es: [[0, 21, 39, 23, 42, 35]]
+Su jugada 2 es: [[0, 21, 39, 23, 42, 35]]
 El numero del sorteo es: [57, 19, 25, 33, 41, 27]
 Coincidencias totales: [set()]
 Este fue su premio:  
 ==================================================
-Su boleta es: [[30, 43, 58, 51, 52, 63]]
+Boleta 2
+Su jugada 1 es: [[30, 43, 58, 51, 52, 63]]
 El numero del sorteo es: [8, 29, 49, 35, 25, 3]
 Coincidencias totales: [{35}, set()]
 Este fue su premio:  
 ==================================================
-Su boleta es: [[50, 1, 25, 7, 52, 49]]
+Boleta 3
+Su jugada 1 es: [[50, 1, 25, 7, 52, 49]]
 El numero del sorteo es: [1, 60, 8, 65, 16, 12]
 Coincidencias totales: [{1}]
 Este fue su premio: Felicidades, acertaste 3 numeros y ganaste un boleto gratis

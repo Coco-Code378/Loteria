@@ -1,4 +1,0 @@
-Boleta 2
-Jugadas : [[23, 34, 54, 48, 64, 3], [58, 26, 10, 33, 51, 21]]
-Jugadas de revancha: []
-Precio total $4: 

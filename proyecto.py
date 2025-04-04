@@ -39,97 +39,6 @@ data_dir = "data"
 
 
 
-                              #Función para la opción 2 de generar sorteo
-#-----------------------------------------------------------------------------------------------------------------
-def generar_sort():
-      # Generar un solo sorteo
-    sorteo1 = generar_sorteo()
-    sorteo_jugadas = generar_sorteo()
-
-    print(f"Sorteo generado: {sorteo_jugadas}")
-    print(f"Sorteo generado2: {sorteo1}")
-    print("\nComparación de Boleta:")
-
-    # Generar una única boleta aleatoria
-    boleta = random.sample(range(0, 66), 6)
-
-    coincidencias = set(boleta) & set(sorteo_jugadas)  # Comparamos la boleta con el sorteo
-
-    if coincidencias:
-        print(f"Le pegaste a {len(coincidencias)} numeros coincidencias: {sorted(coincidencias)}")
-    else:
-        print("No ganó.")
-
-    # Guardar los resultados en un archivo
-    with open(file3, "a") as archivo:
-        archivo.write(f"Tu Boleta: {boleta}\n")
-        archivo.write(f"Numero del sorteo: {sorteo_jugadas}\n")
-        archivo.write(f"Coincidencias: {sorted(coincidencias)}\n")
-        archivo.write("=" * 50 + "\n")
-#-------------------------------------------------------------------------------------------------------------
-
-
-
-
-                             #Manejando función para la comparación de boletas para aleatorio
-#-----------------------------------------------------------------------------------------------------------------
-
-def comparar_boletas():
-
-     sorteo_jugadas = generar_sorteo()
-     print(f"Sorteo generado: {sorteo_jugadas}")
-     print("\nComparación de Boletas:")
-    #Búcle para la comparación de boleta
-     for i, boleta in enumerate(boleta_total_loteria):
-        coincidencias = set(boleta) & set(sorteo_jugadas)  # Comparamos cada boleta con el sorteo
-        
-       
-        if coincidencias:
-             print(f"Boleta {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}") #Compara las coindicencias
-           
-        else:
-             print(f"Boleta {i + 1}: No ganó.")
-             
-        with open(file , "a") as archivo:
-            archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo_jugadas} \n iguales: {coincidencias}\n")
-            
-            archivo.write("=" * 50)
-#-----------------------------------------------------------------------------------------------------------------
-
-
-                                
-   
-                                   #Función para el case 3 de Reportes
-#---------------------------------------------------------------------------------------
-
-def escoger():
-   try: 
-    escoger = str(input("Desea continuar? De lo contrario perdería su boleta ".lower())) #lo convierto en lower la contestación
-                                     
-    if escoger == "si":
-     print("Excelente, su archivo tiene la boleta registrada")
-     crear_archivo(file)
-     comparar_boletas()
-                                         
-    elif escoger == "no":
-     print("Muy bien, fue bueno entretenerse")
-                                        
-    else:
-     print("Tiene un error en su contestación")
-     
-   except FileExistsError:
-       print("Ocurrio un problema en la creación del archivo")
-                                         
-   except TypeError as typo:
-       print(f"Parece que puso un {typo} y es (si o no)")
-                                         
-   except Exception as error:
-       print(f"Tuviste un error {error}, arreglalo")
-                                     
- #-----------------------------------------------------------------------------------------
-                            # Fin de la creación de boletas
-
-
 #Fin de la función menu    
 
 #----------------------------------------------------------------------------------------
@@ -138,6 +47,8 @@ def main():
     #Referencias de funciones:
     principal, juego, boletas, premios_loteria, premios_saca3 = menu()
     aleatorio_loteria, manual_loteria, jugadas, revanchas, total_boletas = creacion_boletas_loteria()
+    aleatorio_saca3, manual_saca3, boleta_total_saca3 = creacion_boleta_saca3()
+    
 
     
     while True:
@@ -244,9 +155,7 @@ def main():
                                 print(f"\n {"-" * 15} Reportes {"-" * 15}\n")
                                      
                                 print("Le vamos a crear un archivo con las boletas\n")
-                                     
-                                escoger()#llamo a la función para que escoja lo que desea hacer
-                                
+                          
                                 
                                 
                                      #Función para salir del programa
@@ -338,7 +247,7 @@ def main():
                         case "2":
                             limpiar_pantalla()
                             
-                            aleatorio_revancha_saca3()
+                            aleatorio_saca3()
                         
                         
                                #Este es el tercero case para generar sorteos
@@ -356,9 +265,6 @@ def main():
                             
                             #Llamando la función generar_boletas()
                         #---------------------------------------------------------------------------------------------------------------------------------
-                            sorteo = generarsaca3()
-
-                            print(f"\n El sorteo es: {sorteo} \n")
 
                             
                             

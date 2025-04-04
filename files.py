@@ -1,46 +1,5 @@
 
-                            #Creo la funcion de boletas aleatorias
-#-------------------------------------------------------------------------------------------------------------------------------------------
-file = "boletas_aleatorias.txt"
-def boleta_aleatoria(file):
-    
-    #Comenzamos el manejo de errores pero por existencia
-    try: 
-     with open(file, "x") :#Me ayuda crear el archivo y cerrarlo automaticamente
-        print(f"Archivo {file} se creo bien")
-        
-    except FileExistsError:
-        print("El archivo ya existe")
-#-------------------------------------------------------------------------------------------------------------------------------------------
 
-                       #Creo la funcion de boletas aleatorias en revancha
-#-------------------------------------------------------------------------------------------------------------------------------------------
-file_revancha = "boletas_aleatorias revancha.txt"
-def boleta_aleatoria(file_revancha):
-    
-    #Comenzamos el manejo de errores pero por existencia
-    try: 
-     with open(file_revancha, "x") :#Me ayuda crear el archivo y cerrarlo automaticamente
-        print(f"Archivo {file_revancha} se creo bien")
-        
-    except FileExistsError:
-        print("El archivo ya existe")
-#-------------------------------------------------------------------------------------------------------------------------------------------
-
-
-                      #Creo la funcion de boletas aleatorias en revancha saca3
-#-------------------------------------------------------------------------------------------------------------------------------------------
-file_revancha_saca3 = "boletas_aleatorias revancha saca3.txt"
-def boleta_aleatoria(file_revancha_saca3):
-    
-    #Comenzamos el manejo de errores pero por existencia
-    try: 
-     with open(file_revancha_saca3, "x") :#Me ayuda crear el archivo y cerrarlo automaticamente
-        print(f"Archivo {file_revancha_saca3} se creo bien")
-        
-    except FileExistsError:
-        print("El archivo ya existe")
-#-------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -154,3 +113,6 @@ def escoger_boleta_manual():
        print(f"Tuviste un error {error}, arreglalo")
 #----------------------------------------------------------------------------------------------------------------                    
     
+    
+    
+

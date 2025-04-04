@@ -10,6 +10,7 @@ from files import *
 #Funcion Principal de creación de boletas para lotería
 def creacion_boletas_loteria():
    #Listas 
+   global boleta_total_loteria 
    boleta_total_loteria = 0
    revanchas_loteria = []
    jugadas = []
@@ -18,10 +19,12 @@ def creacion_boletas_loteria():
 #---------------------------------------------------------------------------------------------------------
 
    def boleta_total():
-      nonlocal boleta_total_loteria  # Permite modificar la variable externa
-      boleta_total_loteria += 1  #  Suma 1 cada vez que se ejecuta
+      global boleta_total_loteria  # Permite modificar la variable externa
+      boleta_total_loteria += 1 #  Suma 1 cada vez que se ejecuta
       
-      return boleta_total_loteria
+      total = boleta_total_loteria
+      
+      return total
 
 #---------------------------------------------------------------------------------------------------------
 #Final de la función para incrementar el valor de las boletas
@@ -59,6 +62,23 @@ def creacion_boletas_loteria():
        print(f"\nJugadas Aleatorias ingresadas: {jugadas}")
        print(f"\nJugadas con Revancha: {revanchas_loteria}")
        print(f"\nPrecio total: ${precio_total}")        
+       boleta_total()
+       try:
+          with open(file , "a") as archivo:
+             archivo.write(f"Boleta {boleta_total_loteria}\n")
+             archivo.write(f"Jugadas : {jugadas}\n" )
+             archivo.write(f"Jugadas de revancha: {revanchas_loteria}\n")
+             archivo.write(f"Precio total ${precio_total}: \n")
+             
+             
+             
+       except FileExistsError:
+          print("Lo siento pero no encontramos su archivo")
+          
+       except Exception as error:
+          print(f"Lo siento, el archivo tuvo un problema tipo: {error}")
+   
+          
 
                
     

@@ -43,18 +43,123 @@ aleatorio_loteria()
 #Función anidada que asigna una jugada de forma manual, ingresando los dígitos del usuario en el juego de Lotería
 manual_loteria()
 
+
+
+    	                                    #Files
+#-----------------------------------------------------------------------------------------------------------        
+Este archivo contiene las dos funcioens que estaremos manejando para guardar la data en los archivos
+
+#Esta función será la encargada de crear el archivo si no existiera en el entorno loteria
+crear_archivos()
+
+#Esta función será la encargada de crear un archivo si no existiera en el entorno saca3
+crear_archivo_saca3() 
+#-------------------------------------------------------------------------------------------------------------
+                                        #Fin de files
+
+
+                                        #Limpiar pantalla
+#------------------------------------------------------------------------------------------------------------
+
+Este archivo será el encargado de hacer un "cls" para que se limpie la 
+pantalla y se vea mejor el código.
+
+#Esta función abarca todo el file y se encarga de limpiar la linea de comandos
+limpiar_pantalla() 
+#-------------------------------------------------------------------------------------------------------------
+                                            #Fin del limpiar pantalla
+
+
+
+
+
+                                        #loteria
 #-------------------------------------------------------------------------------------------------------------#
-# Función de creacion_sorteos()
+Este archivo será el encargado de tener la mayor de las instrucciones de lo que se estará manejando para 
+el manejo de los sorteos, aquí podrán ver el mayor código ya que será la estructura de la loteria
 
-#Función anidada para la comparación de boletas de jugadas con las boletas de sorteos
-comparar_boletas(sorteo, total_boletas)
 
-#Función anidada para generar sorteos en el juego de lotería:
-generar_sorteo_loteria()
+#Esta función es la padre ya que de esta se crean otras
+creacion_sorteos()
+
+
+#Esta es la función anidada de creacion_sorteos y se encarga de auto-incrementar cada boleta 
+boleta_total()
+
+
+#Esta es la segunda función anidada de creación_sorteos y será la que mantenga la loteria
+#aleatoria, suma la boleta, tiene las jugadas y lo lleva al archivo con la revancha si la hubiera escogido
+aleatorio_loteria()
+
+
+#Esta es la tercara función anidada de creacion_sorteos y será la que mantenga la loteria
+#manual, suma la boleta, tiene las jugadas y lo lleva al archivo con la revancha si la hubiera escogido
+manual_loteria()
+#----------------------------------------------------------------------------------------------------
+                    #Fin de las anidadas
+
+
+#Función para generar sorteos en el juego de lotería:
+generar_sorteo()
 
 #Función anidada para generar sorteos en el juego de saca3
 generar_sorteo_saca3()
-```
+
+                                #Sorteos
+#---------------------------------------------------------------------------------------------------------
+
+
+
+#Esta función será la encargada de si el usuario al marcar generar sorteo, la información y datos que suba sea 
+#para la revancha y se marque más te diga lo que ganaste
+sorteo_loteria_revancha()
+
+
+#Esta función será la que se encarga de si el usuario al marcar generar sorteo, la información y datos que suba sea 
+#para la jugada y se marque más te diga lo que ganaste
+sorteo_loteria_jugadas()
+
+#--------------------------------------------------------------------------------------------------------------
+                                        #Fin de loterias
+
+
+
+                                            #Menu
+#------------------------------------------------------------------------------------------------------------
+Este archivo va a contener todos los menus que hay se estarán utilizando para el proyecto de loteria
+
+#Esta será la función principal (padre) que estará definiendo en otras funciones los menus de los diferentes 
+#requisitos para operar correctamente
+menu()
+
+#Este es el primer menú que vemos al inicio cuando interpretamos el código y es la primera función anidada
+menu_principal()
+
+
+#Esta es la segunda función anidada que el usuario escogera que hacer y será una de las primordiales para la jugabilidad
+menu_juegos()
+
+
+#Esta es la tercera función anidada que será la que estará al escoger comprar boletas para escoger entre (manual) y (aleatorio)
+menu_boletas()
+#----------------------------------------------------------------------------------------------------------------------------
+
+
+                                                #Premios del archivo menu
+#----------------------------------------------------------------------------------------------------------------------------
+
+#En esta función podrán observar los premios que se estará atribuyendo a los que ganen en la loteria
+premios_loteria()
+
+
+#Esta función será la encargada de poder observar los premios que se estará ofreciendo a los que ganen en el saca3
+premios_saca3()
+
+
+
+
+
+
 
 
 

@@ -10,36 +10,11 @@ from files import *
 from menu import *
 from loteria import *
 from saca3 import *
-
-#Variables
-data_dir = "data" 
-
-
-#boletas_dir = os.path.join(data_dir, "boletos")  
-#sorteos_dir = os.path.join(data_dir, "sorteos")
-#reportes_dir = os.path.join(data_dir, "reportes")
+from reportes import *
 
 
 
-#creamos los directorios o carpetas de archivos 
 
-#boletas_dir = os.path.join(data_dir, "boletos")  
-#sorteos_dir = os.path.join(data_dir, "sorteos")
-#reportes_dir = os.path.join(data_dir, "reportes")
-
-                                        #Creación del programa
-#-------------------------------------------------------------------------------------------------------
-
-    
-
-    
-    #Fin de generar sorteo random
-#----------------------------------------------------------------------------------------------------
-            
-
-
-
-#Fin de la función menu    
 
 #----------------------------------------------------------------------------------------
 #Función para el programa Main
@@ -129,7 +104,8 @@ def main():
                                 print(f"\n {"-" * 15} Sorteos Para Jugadas... {"-" * 15}\n")
                                 
                                 print(f"La cantidad de boletas es {total_boletas()}")
-                                
+
+                          
                                 print(f"\n {"-" * 7}Comparación de Boletas...: {"-" * 7}")   
                                 
                                 #Llamando la función para comprar boletas y generar sorteo
@@ -143,6 +119,8 @@ def main():
                                     print(f"\n {"-" * 15} Sorteos Para Revanchas... {"-" * 15}\n")
                                     print(f"\n {"-" * 7}Comparación de Boletas...: {"-" * 7}")  
                                     sorteo_loteria_revanchas(revanchas)
+                          
+                                
                                      
                                 else:
                                     print("La revancha fue cancelada, perdiste dinero.")

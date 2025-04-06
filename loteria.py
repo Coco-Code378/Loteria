@@ -65,6 +65,9 @@ def creacion_boletas_loteria():
        boleta_total()
        try:
           with open(file , "a") as archivo:
+             archivo.write(f"{'=' *50}\n")
+             archivo.write(f"{'-' * 7} Boleta aleatoria {'-' * 7}\n")
+             archivo.write(f"{'=' *50}\n")
              archivo.write(f"Boleta {boleta_total_loteria}\n")
              archivo.write(f"Jugadas : {jugadas}\n" )
              archivo.write(f"Jugadas de revancha: {revanchas_loteria}\n")
@@ -152,15 +155,33 @@ def creacion_boletas_loteria():
                 print(f"\nJugadas manuales ingresadas: {jugadas}")
                 print(f"\nJugadas con Revancha: {revanchas_loteria}")
                 print(f"\nPrecio total: ${precio_total}")
-                break
+                boleta_total()
+                try:
+                 with open(file , "a") as archivo:
+                  archivo.write(f"{'=' *50}\n")
+                  archivo.write(f"{'-' * 7} Boleta Manual {'-' * 7}\n")
+                  archivo.write(f"{'=' *50}\n")
+                  archivo.write(f"Boleta {boleta_total_loteria}\n")
+                  archivo.write(f"Jugadas : {jugadas}\n" )
+                  archivo.write(f"Jugadas de revancha: {revanchas_loteria}\n")
+                  archivo.write(f"Precio total ${precio_total}: \n")
+             
+             
+             
+                except FileExistsError:
+                 print("Lo siento pero no encontramos su archivo")
+          
+                except Exception as error:
+                 print(f"Lo siento, el archivo tuvo un problema tipo: {error}")
                 
                 
                 
             except ValueError as value:
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
          #Cerrando el ciclo While True
+            return boleta_total_loteria
               
-   boleta_total()
+
 #-----------------------------------------------------------------------------------------------------------------------------------------
     #Returns de la función Creación_Boletas:
    return aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria, boleta_total
@@ -174,13 +195,29 @@ def generar_sorteo():
     return random.sample(range(0,66),6)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+                                            #Creación de Sorteos saca 3
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+#generar numero random en sorteos
+def generar_sorteo_saca3():
+    return random.sample(range(0, 3),9)
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 #Comienzo de la función sorteo_loteria_revancha
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 def sorteo_loteria_revanchas(revanchas):
     premio = " "
     sorteo_revanchas = generar_sorteo()
     print(f"Sorteo generado: {sorteo_revanchas}")
+    
      
+    with open(file , "a") as archivo:
+       archivo.write(f"{'=' * 50}\n")
+       archivo.write(f"{'-' * 7 } Generar sorteo {'-' * 7}\n ")
+       archivo.write(f"El sorteo generado es: {sorteo_revanchas}\n")
+       archivo.write(f"{'=' * 50}\n")
+       
     print("\nComparación de Boletas:")
     #Búcle para la comparación de boleta
     for i, boleta in enumerate(revanchas):
@@ -205,10 +242,10 @@ def sorteo_loteria_revanchas(revanchas):
            print(f"La jugada {i + 1} no ganó.")
            premio = "No pudo ganar ningun premio"
 
-       with open(file2 , "a") as archivo:
-          archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo_revanchas} \n iguales: {coincidencias}\n")
-          archivo.write(f"Su premio es {premio}")
-          archivo.write("=" * 50)
+           with open(file , "a") as archivo:
+            archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo_revanchas} \n iguales: {coincidencias}\n")
+            archivo.write(f"Su premio es {premio}")
+            archivo.write("=" * 50)
 #----------------------------------------------------------------------------------------------------------------- 
 #Final de sorteo_loteria_revancha
 
@@ -219,6 +256,12 @@ def sorteo_loteria_jugadas(jugadas):
      sorteo_jugadas = generar_sorteo()
      print(f"Sorteo generado: {sorteo_jugadas}")
      
+     with open(file , "a") as archivo:
+       archivo.write(f"{'=' * 50}\n")
+       archivo.write(f"{'-' * 7 } Generar sorteo {'-' * 7}\n ")
+       archivo.write(f"El sorteo generado es: {sorteo_jugadas}\n")
+       archivo.write(f"{'=' * 50}\n")
+       
      print("\nComparación de Boletas:")
     #Búcle para la comparación de boleta
      for i, boleta in enumerate(jugadas):
@@ -246,9 +289,17 @@ def sorteo_loteria_jugadas(jugadas):
            print(f"La jugada {i + 1} no ganó.")
            premio = "No pudo ganar ningun premio"
 
-        with open(file2 , "a") as archivo:
-            archivo.write(f"su boleta es: {boleta}\n la del sorteo es: {sorteo_jugadas} \n iguales: {coincidencias}\n")
-            archivo.write(f"Su premio es {premio}")
-            archivo.write("=" * 50)
+        try:
+            with open(file, "a") as archivo:
+                archivo.write(f"Boleta {i + 1}: {boleta}\n")
+                archivo.write(f"Sorteo generado: {sorteo_jugadas}\n")
+                archivo.write(f"Coincidencias: {sorted(coincidencias)}\n")
+                archivo.write(f"Premio: {premio}\n")
+                archivo.write("=" * 50 + "\n")
+        except FileNotFoundError:
+            print("Error: El archivo no fue encontrado.")
+        except Exception as e:
+            print(f"Error: {e}")
+
 #-----------------------------------------------------------------------------------------------------------------    
 #Final de la función sorteo_loteria_jugadas

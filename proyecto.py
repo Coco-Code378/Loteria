@@ -20,7 +20,7 @@ from reportes import *
 #Función para el programa Main
 def main():
     #Referencias de funciones:
-    principal, juego, boletas, premios_loteria, premios_saca3 = menu()
+    principal, juego, boletas,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
     aleatorio_loteria, manual_loteria, jugadas, revanchas, total_boletas = creacion_boletas_loteria()
     aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
     
@@ -178,7 +178,7 @@ def main():
                             # Llamando la función Limpiar_pantalla
                             limpiar_pantalla()
 
-                            boletas()
+                            menu_boletas_saca3()
                             opcion_boletas =input("\n Elige la opción a seleccionar: ")
                             
                             

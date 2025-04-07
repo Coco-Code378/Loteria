@@ -1,53 +1,229 @@
 import random
+from limpiar_pantalla import *
+from files import*
+
+
+   
+   
+
+
 
 
 #-------------------------------------------------------------------------------------------------------------
 def creacion_boleta_saca3():
 
     #Creación de boletas para Saca3
-    boleta_total_saca3 = []
+    global boleta_total_saca3
+    boleta_total_saca3 = 0
+    jugadas = []
     revancha_saca3 = []
-    precio_saca3 = 0
-    precio_revancha_saca3 = 0
-    precio_total_saca3 = precio_saca3 + precio_revancha_saca3
-
-    #Funcion Anidada de Aleatorio Saca3
-#-------------------------------------------------------------------------------------------------------------
+    
+    
+    
+    #-----------------------------------------------------------------------------------------------------------------
+    
+  
+    
+        
     def aleatorio_saca3():
-        print("Bienvenidos a su boleta con revancha\n")
+        #Variables y Listas:
+       precio_saca3 = 0
+       precio_revancha_saca3 = 0
+      
+       
+      
+       cantidad_jugadas = int(input("¿Cuántas jugadas desea realizar?: "))
+       
+    
+       for jugada in range(cantidad_jugadas):
+         precio_saca3 += 2
+         jugada = random.sample(range(0, 9), 3)  # Genera una nueva boleta aleatoria
+      
+         jugadas.append(jugada)  # Agrega a la lista local
+         print(f"Tu jugada aleatoria: {jugada}")
+         opcion = input("\n¿Deseas incluir esta jugada como revancha? (Si/No): ")
+         opcion = opcion.capitalize()
+         if opcion == "Si":
+            precio_revancha_saca3 += 1
+            revancha_saca3.append(jugada)
+            print("\nLa jugada fue añadida para Revancha")
+         else:
+            print("\nLa jugada no fue añadida como revancha")   
+        
+        #Limpiar pantalla para mejor visualización
+       limpiar_pantalla()
+       
+       
+       precio_total_saca3 = precio_saca3 + precio_revancha_saca3
+       print(f"\nJugadas Aleatorias ingresadas: {jugadas}")
+       print(f"\nJugadas con Revancha: {revancha_saca3}")
+       print(f"\nPrecio total: ${precio_total_saca3}")        
+       boleta_total_revancha()
+       try:
+          with open(file2 , "a") as archivo:
+             archivo.write(f"{'=' *50}\n")
+             archivo.write(f"{'-' * 7} Saca 3 Boleta Aleatoria {'-' * 7}\n")
+             archivo.write(f"{'=' *50}\n")
+             archivo.write(f"Boleta {boleta_total_saca3}\n")
+             archivo.write(f"Jugadas : {jugadas}\n" )
+             archivo.write(f"Jugadas de revancha: {revancha_saca3}\n")
+             archivo.write(f"Precio total ${precio_total_saca3}: \n")
+             
+             
+             
+       except FileExistsError:
+          print("Lo siento pero no encontramos su archivo")
+          
+       except Exception as error:
+          print(f"Lo siento, el archivo tuvo un problema tipo: {error}")
+   
+   
+        
+           #Función para hacer Manual saca 3               
+#-----------------------------------------------------------------------------------------------------------------------------------------
+    def manual_saca3():
+        #Variables y listas
+        precio_jugada_loteria = 0
+        precio_revancha_loteria = 0
+        
+        #Prints 
+        print(f"{"=" * 8} Costos: {"=" * 8}")
+        print(f"Cada jugada cuesta $2.00")
+        print(f"Cada revancha cuesta $1.00")
 
-        try:
-            # Pedir número de boletos con validación
-            while True:
-                boleto = int(input("¿Cuántos boletos desea? (solo puede escoger entre 1 a 2 boletas): "))
-                if boleto in [1, 2]:
-                    break
-                else:
-                    print("Por favor, ingrese un número válido entre 1 y 2.")
+        #Variable para la cantidad de jugadas
+        cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
+        
+        
+        while True:
+            try:
+               
+                for i in range(cantidad_jugadas):
+                    
+                    #Listas inicializadas en el For
+                    precio_jugada_loteria += 2
+                    valores_jugadas = []
+                    valores_unicos = set()
+                    
+                    
+                    for j in range(6):
+                        while True:
+                            numeros = int(input(f"Ingrese un valor: {j + 1} del 0 al {66 - 1} en la jugada {i + 1}, (No se puede repetir): "))
+                    
+                            if 0 <=  numeros <= 65:
+                                if numeros not in valores_unicos:
+                                    print(f"\n El número: {numeros} fue agregado \n")
+                                    valores_jugadas.append(numeros)
+                                    valores_unicos.add(numeros)
+                                    break  
+                                else:
+                                    print(f"\n No se puede repetir el valor {numeros}, por favor inténtelo de nuevo")
+                            else:
+                                print("\n Elegiste un número no correspondido a lo que se pide.") 
 
-            # Listas
-            boletas_aleatoria = []
-            coincidencias_totales = []
+                    #Ingresando y limpiando las listas
+                    valores_unicos.clear()             
+                    jugadas.append(valores_jugadas)
 
-            # Generar número aleatorio de sorteo
-            numero = random.sample(range(0, 9), 3)
-            print(f"El número aleatorio del sorteo es: {numero}")
+                    opcion = input("¿Deseas incluir esta jugada como revancha? (Si/No): ")
+                    opcion = opcion.capitalize()
+                    if opcion == "Si":
+                        precio_revancha_loteria += 1
+                        revancha_saca3.append(jugadas)
+                        print("\nLa jugada fue añadida para Revancha")
+                    else:
+                        print("\nLa jugada no fue añadida como revancha")   
 
-            # Generar las boletas y compararlas
-            boleta_total_loteria = []
-            for i in range(boleto):
-                boleta = random.sample(range(0, 9), 3)
-                boleta_total_loteria.append(boleta)
-                boletas_aleatoria.append(boleta)
-                print(f"Boleta {i + 1}: {boleta}")
+                    
+                
+                #Limpiar pantalla para mejor visualización
+                limpiar_pantalla()
+                
+                precio_total = precio_jugada_loteria + precio_revancha_loteria
+                print(f"\nJugadas manuales ingresadas: {jugadas}")
+                print(f"\nJugadas con Revancha: {revancha_saca3}")
+                print(f"\nPrecio total: ${precio_total}")
+                boleta_total_revancha()
+                try:
+                 with open(file2 , "a") as archivo:
+                  archivo.write(f"{'=' *50}\n")
+                  archivo.write(f"{'-' * 7} Saca 3 Boleta Manual {'-' * 7}\n")
+                  archivo.write(f"{'=' *50}\n")
+                  archivo.write(f"Boleta {boleta_total_saca3}\n")
+                  archivo.write(f"Jugadas : {jugadas}\n" )
+                  archivo.write(f"Jugadas de revancha: {revancha_saca3}\n")
+                  archivo.write(f"Precio total ${precio_total}: \n")
+             
+             
+             
+                except FileExistsError:
+                 print("Lo siento pero no encontramos su archivo")
+          
+                except Exception as error:
+                 print(f"Lo siento, el archivo tuvo un problema tipo: {error}")
+                
+                
+                
+            except ValueError as value:
+                print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
+         #Cerrando el ciclo While True
+        
+        
+    def boleta_total_revancha():
+      global boleta_total_saca3 # Permite modificar la variable externa
+      boleta_total_saca3 += 1 #  Suma 1 cada vez que se ejecuta
+      
+      total = boleta_total_saca3
+      
+      return total
+            
+            
+            
+    #--------------------------------------------------------------------------------------------------------------------------------------------------
+    #Fin de la función Manual
+    
+    return  aleatorio_saca3, manual_saca3, boleta_total_revancha , jugadas , revancha_saca3
 
-            # Comparar cada boleta con el número aleatorio generado
-            for i, boleta in enumerate(boleta_total_loteria):
-                coincidencias = set(boleta) & set(numero)
-                coincidencias_totales.append(coincidencias)
-                premio = "Lo siento, no llegaste"
+#-------------------------------------------------------------------------------------------------------------
 
-                if coincidencias:
+
+                                            #Creación de Sorteos saca 3
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+#generar numero random en sorteos
+def generar_sorteo_saca3():
+    return random.sample(range(0, 9),3)
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+                                                #Esta función es la encargada de generar los premios y los sorteos
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+def aleatorio_saca3_reporte(jugadas):
+    
+    #Aquí se registran los premios (o se guardan mejor dicho)
+     premio = " "
+     sorteo_jugadas = generar_sorteo_saca3()
+     
+     
+     
+     print(f"Sorteo generado: {sorteo_jugadas}")
+     #Guardo los datos en el file
+     with open(file2 , "a") as archivo:
+       archivo.write(f"{'=' * 50}\n")
+       archivo.write(f"{'-' * 7 } Generar sorteo {'-' * 7}\n ")
+       archivo.write(f"El sorteo generado es: {sorteo_jugadas}\n")
+       archivo.write(f"{'=' * 50}\n")
+       
+     print("\nComparación de Boletas:")
+    #Búcle para la comparación de boleta
+     for i, boleta in enumerate(jugadas):
+        coincidencias = set(boleta) & set(sorteo_jugadas)  # Comparamos cada boleta con el sorteo
+        
+       #Aquí verán los premios que se harán a los que acierten
+        if coincidencias:
+            print(f"Jugada {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+
+            if coincidencias:
                     print(f"Jugada {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
 
                     if len(coincidencias) == 3:
@@ -58,64 +234,80 @@ def creacion_boleta_saca3():
                         premio = "Felicidades, acertaste 5 números y ganaste 300,000 dólares"
                     elif len(coincidencias) == 6:
                         premio = "Felicidades, acertaste todos los números y ganaste EL MILLÓN"
+                    else:
+                         print(f"La jugada {i + 1} no ganó.")
+                         premio = "No pudo ganar ningun premio"
+                        
+                        
+            else:
+             print(f"Boleta {i + 1}: No ganó.")
 
-                else:
-                    print(f"Boleta {i + 1}: No ganó.")
-
-            # Guardar los datos en un archivo
-            with open("file_revancha_saca3.txt", "a") as archivo:
-                archivo.write(f"Boletas generadas: {boletas_aleatoria}\n")
-                archivo.write(f"Número del sorteo: {numero}\n")
-                archivo.write(f"Coincidencias totales: {coincidencias_totales}\n")
-                archivo.write(f"Su premio es: {premio}\n")
-                archivo.write("=" * 50 + "\n")
-
-            print("Se guardaron los datos.")
-
-        except ValueError:
-            print("Error: Por favor ingrese un número válido.")
-        
-           #Función para hacer Manual saca 3               
-#-----------------------------------------------------------------------------------------------------------------------------------------
-    def manual_saca3():
-         cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
-
-         jugadas = []
-         while True:
+            #Aquí guardará lo que gano
             try:
-                for i in range(cantidad_jugadas):
-                    valores_jugadas = []
-                    valores_unicos = set()
-        
-                    for j in range(3):
-                        while True:
-                            numeros = int(input(f"Ingrese un valor: {j + 1} del 0 al {9 - 1} en la jugada {i + 1}, (No se puede repetir): "))
-                    
-                            if 0 <=  numeros <= 9:
-                                if numeros not in valores_unicos:
-                                    print(f"\n El número: {numeros} fue agregado \n")
-                                    valores_jugadas.append(numeros)
-                                    valores_unicos.add(numeros)
-                                    break  
-                                else:
-                                    print(f"\n No se puede repetir el valor {numeros}, por favor inténtelo de nuevo")
-                            else:
-                                print("\n Elegiste un número no correspondido a lo que se pide.")    
-                    valores_unicos.clear()             
-                    jugadas.append(valores_jugadas)
-                    boleta_total_saca3.append(valores_jugadas)
-                
-                print(f"Boletas manuales ingresadas: {jugadas}")
-                break
-            except ValueError as value:
-                print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
-            
-            
-            
-            
-    #--------------------------------------------------------------------------------------------------------------------------------------------------
-    #Fin de la función Manual
-    
-    return aleatorio_saca3, manual_saca3, boleta_total_saca3
+             with open(file2, "a") as archivo:
+                archivo.write(f"Boleta {i + 1}: {boleta}\n")
+                archivo.write(f"Sorteo generado: {sorteo_jugadas}\n")
+                archivo.write(f"Coincidencias: {sorted(coincidencias)}\n")
+                archivo.write(f"Premio: {premio}\n")
+                archivo.write("=" * 50 + "\n")
+            except FileNotFoundError:
+              print("Error: El archivo no fue encontrado.")
+            except Exception as e:
+              print(f"Error: {e}")
+              
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------------------------------------
+
+
+                             #Esta función es la encargada de generar los premios y los sorteos de la revancha
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+def sorteo_saca3_revanchas(revanchas):
+     #Aquí se registran los premios (o se guardan mejor dicho)
+     premio = " "
+     sorteo_revanchas = generar_sorteo_saca3()
+     
+     
+     print(f"Saca 3 Sorteo Revanchas")  
+
+     with open(file2, "a") as archivo:
+         archivo.write(f"{'=' * 50}\n")
+         archivo.write(f"{'-' * 7} Saca 3 Sorteo {'-' * 7}\n")
+         archivo.write(f"El sorteo generado es: {sorteo_revanchas}\n")
+         archivo.write(f"{'=' * 50}\n")
+
+     print("\nComparación de Boletas Revancha:")
+
+    # Bucle para la comparación de boletas
+     for i, boleta in enumerate(revanchas):
+         coincidencias = set(boleta) & set(sorteo_revanchas)
+         
+          
+       #Aquí verán los premios que se harán a los que acierten
+         if coincidencias:
+             print(f"Jugada {i + 1}: Le pegaste a {len(coincidencias)} número(s), coincidencias: {sorted(coincidencias)}")
+
+             if len(coincidencias) == 3:
+                premio = "Felicidades, acertaste 3 números y ganaste un boleto gratis"
+             elif len(coincidencias) == 2:
+                premio = "Acertaste 2 números. ¡Casi lo logras!"
+             elif len(coincidencias) == 1:
+                premio = "Acertaste 1 número"
+             else:
+                premio = "No pudo ganar ningún premio"
+         else:
+             print(f"Jugada {i + 1}: No ganó.")
+             premio = "No pudo ganar ningún premio"
+             coincidencias = set()
+             
+               
+        # Escribimos resultado en el archivo
+         with open(file2, "a") as archivo:
+             archivo.write(f"Su boleta es: {boleta}\n")
+             archivo.write(f"La del sorteo es: {sorteo_revanchas}\n")
+             archivo.write(f"Iguales: {sorted(coincidencias)}\n")
+             archivo.write(f"Su premio es: {premio}\n")
+             archivo.write("=" * 50 + "\n")
+
+
+#----------------------------------------------------------------------------------------------------------------- 
+                                #Final de sorteo_saca 3 Revancha

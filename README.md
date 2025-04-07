@@ -96,7 +96,7 @@ aleatorio_loteria()
 #manual, suma la boleta, tiene las jugadas y lo lleva al archivo con la revancha si la hubiera escogido
 manual_loteria()
 #----------------------------------------------------------------------------------------------------
-                    #Fin de las anidadas
+Estas serán las funciones en el mismo archivo pero sin anidar
 
 
 #Función para generar sorteos en el juego de lotería:
@@ -147,6 +147,8 @@ menu_boletas()
 
                                                 #Premios del archivo menu
 #----------------------------------------------------------------------------------------------------------------------------
+Estas serán las funciones en el mismo archivo pero sin anidar
+
 
 #En esta función podrán observar los premios que se estará atribuyendo a los que ganen en la loteria
 premios_loteria()
@@ -156,9 +158,37 @@ premios_loteria()
 premios_saca3()
 
 
+                                            #Premios del archivo saca3
+#----------------------------------------------------------------------------------------------------------------------------
+Este archivo va a contener los datos para que el usuario registre lo que desee comprar y pueda ver los sorteos
+
+
+#En esta función guardaré los datos que se estará guardando para llevarlo a los sorteos y se puede acumular siendo la función padre
+creacion_sorteo_saca3()
+
+#En esta función siendo la primera función anidada, es la encargada de generar los numerós aleatorios del saca 3 y los lleve al file
+aleatorio_saca3()
+
+
+#En esta función siendo la segunda fncion anidada, es la que el usuario podrá poner los números que desee y se guardará en el file
+manual_saca3()
+
+
+#En esta función se estará auto-incrementando la bóleta por cada vez que reinicie el juego
+boleta_total_revancha()
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+                            Estas serán las funciones en el mismo archivo pero sin anidar
+
+
+#Esta función es la encargada de generar los sorteos del saca 3 y mostrar las coincidencias con su premio y lo lleve al archivo
+aleatorio_saca3_reporte()
 
 
 
+#Esta función es la encarada de generar los sorteos del saca 3 en revancha y mostar las coincidencias con su premio y lo lleve al archivo
+sorteo_saca3_revancha()
+#--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

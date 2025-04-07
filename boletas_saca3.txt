@@ -1,0 +1,16 @@
+==================================================
+------- Saca 3 Boleta Aleatoria -------
+==================================================
+Boleta 1
+Jugadas : [[6, 0, 8]]
+Jugadas de revancha: []
+Precio total $2: 
+==================================================
+------- Generar sorteo -------
+ El sorteo generado es: [2, 3, 8]
+==================================================
+Boleta 1: [6, 0, 8]
+Sorteo generado: [2, 3, 8]
+Coincidencias: [8]
+Premio: No pudo ganar ningun premio
+==================================================

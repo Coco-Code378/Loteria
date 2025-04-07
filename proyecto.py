@@ -22,7 +22,7 @@ def main():
     #Referencias de funciones:
     principal, juego, boletas, premios_loteria, premios_saca3 = menu()
     aleatorio_loteria, manual_loteria, jugadas, revanchas, total_boletas = creacion_boletas_loteria()
-    aleatorio_saca3, manual_saca3, boleta_total_saca3 = creacion_boleta_saca3()
+    aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
     
 
     
@@ -158,6 +158,7 @@ def main():
                     # Llamando la función Limpiar_pantalla
                     limpiar_pantalla()
                     print(f"\n {"-" * 15} Saca 3 {"-" * 15}\n")
+                    premios_saca3()
                     
 #-------------------------------------------------------------------------------------------------------------------------------------
 
@@ -178,7 +179,7 @@ def main():
                             limpiar_pantalla()
 
                             boletas()
-                            opcion_boletas = str(input("\n Elige la opción a seleccionar: "))
+                            opcion_boletas =input("\n Elige la opción a seleccionar: ")
                             
                             
                             
@@ -187,23 +188,25 @@ def main():
                             match opcion_boletas:
                                 
                                 
-                                            #El case 1 es para la creación de boletas automáticas
+                                            #El case 1 es para la creación de boletas Manuales
                             #-------------------------------------------------------------------------------------------------------------------------
                                 case "1":
                                     
                                     # Llamando la función Limpiar_pantalla
                                     limpiar_pantalla()
                                     
-                                    print(f"\n {"-" * 15} Creación de Boletas Automaticas: {"-" * 15}\n")
+                                    print(f"\n {"-" * 15} Creación de Boletas Manuales: {"-" * 15}\n")
+                                    manual_saca3()
 
 
-                                                        #Este match case es para el manejo de la boleta manual
+                                                        #Este match case es para el manejo de la boleta Automatica
                             #-----------------------------------------------------------------------------------------------------------------------
                                 case "2":
                                     # Llamando la función Limpiar_pantalla
                                     limpiar_pantalla()
 
-                                    print(f"\n {"-" * 15} Creación de Boletas Manuales: {"-" * 15}\n")
+                                    print(f"\n {"-" * 15} Creación de Boletas Automatica: {"-" * 15}\n")
+                                    aleatorio_saca3()
                                     
                                     
                                     
@@ -224,9 +227,27 @@ def main():
                     #----------------------------------------------------------------------------------------------------------------------------------
                         case "2":
                             limpiar_pantalla()
+                            print(f"\n {"-" * 15} Sorteos {"-" * 15}\n")
+                            print(f"La cantidad de boletas es {boleta_total_revancha()}")
+                                
+                            print(f"\n {"-" * 7}Comparación de Boletas: {"-" * 7}")   
                             
+                            aleatorio_saca3_reporte(jugada)
 
-                            aleatorio_saca3()
+                            elegir = input("¿Deseas pasar a los sorteos de revancha? (Si/No): ")
+                            elegir = elegir.capitalize()
+
+                            if elegir == "Si":
+                                    limpiar_pantalla()
+                                    print(f"\n {"-" * 15} Sorteos Para Revanchas... {"-" * 15}\n")
+                                    print(f"\n {"-" * 7}Comparación de Boletas...: {"-" * 7}")  
+                                    sorteo_saca3_revanchas(revancha3)
+                          
+                                
+                                     
+                            else:
+                                    print("La revancha fue cancelada, perdiste dinero.")
+
         
                         
                         
@@ -238,9 +259,10 @@ def main():
                             # Llamando la función Limpiar_pantalla
                             limpiar_pantalla()
 
-                            print(f"\n {"-" * 15} Sorteos {"-" * 15}\n")
-                                
-                            print(f"\n {"-" * 7}Comparación de Boletas: {"-" * 7}")   
+                          
+                                                      
+                            
+                            
                             
                             
                             #Llamando la función generar_boletas()

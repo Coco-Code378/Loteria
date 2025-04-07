@@ -1,7 +1,7 @@
 
                                             #Creo la función de boletas manuales
 #-----------------------------------------------------------------------------------------------------------------------------------------
-file2 = "boletas_manuales.txt"
+file2 = "boletas_saca3.txt"
 def crear_archivo_saca3(file2):
     
     try:

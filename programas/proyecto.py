@@ -4,24 +4,26 @@
 #Jorge Maldonado
 
 #librerias
-import random #importamos la libreria random
-from limpiar_pantalla import *
+
+from limpiar import *
 from files import *
 from menu import *
 from loteria import *
 from saca3 import *
-from reportes import *
 
 
 
+     
 
 
 #----------------------------------------------------------------------------------------
 #Función para el programa Main
 def main():
+    #Variables para conteo
+    contador_sorteos = 0
     #Referencias de funciones:
     principal, juego, boletas,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
-    aleatorio_loteria, manual_loteria, jugadas, revanchas, total_boletas = creacion_boletas_loteria()
+    aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria, total_boletas = creacion_boletas_loteria()
     aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
     
 
@@ -101,6 +103,7 @@ def main():
                              #Este es el tercer case del segundo match case para generar sorteo aleatoriamente
                              #--------------------------------------------------------------------------------------------------------------------------------       
                             case "2":
+                                contador_sorteos += 1
                                 print(f"\n {"-" * 15} Sorteos Para Jugadas... {"-" * 15}\n")
                                 
                                 print(f"La cantidad de boletas es {total_boletas()}")
@@ -116,9 +119,10 @@ def main():
 
                                 if elegir == "Si":
                                     limpiar_pantalla()
+                                    contador_sorteos += 1
                                     print(f"\n {"-" * 15} Sorteos Para Revanchas... {"-" * 15}\n")
                                     print(f"\n {"-" * 7}Comparación de Boletas...: {"-" * 7}")  
-                                    sorteo_loteria_revanchas(revanchas)
+                                    sorteo_loteria_revanchas(revanchas_loteria)
                           
                                 
                                      
@@ -132,7 +136,17 @@ def main():
                             case "3":
                                 print(f"\n {"-" * 15} Reportes {"-" * 15}\n")
                                      
-                                print("Le vamos a crear un archivo con las boletas\n")
+                                print(f" +=========================================================================+")
+                                print (f"|       La cantidad de boletas vendidas en Loteria: {total_boletas()}     |")    
+                                print(f" |-------------------------------------------------------------------------|")  
+                                print (f"|        La cantidad de jugadas en las boletas: {len(jugadas)}            |")  
+                                print(f" |-------------------------------------------------------------------------|")     
+                                print(f" |      La cantidad de jugadas con revancha: {len(revanchas_loteria)}      |")
+                                print(f" |-------------------------------------------------------------------------|")    
+                                print(f" |          La cantidad de sorteo generados: {contador_sorteos}            |")
+                                print(f" |-------------------------------------------------------------------------|")     
+                                print(f" |          La cantidad de jugadas ganadoras: {contador_ganador}           |")
+                                print(f" |-------------------------------------------------------------------------|")   
                           
                                 
                                 
@@ -300,6 +314,7 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
                 case "3":
                     print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
+                    exit()
                     break
                 
                 #Este es el último case para capturar algún error en la opción

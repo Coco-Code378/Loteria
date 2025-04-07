@@ -1,5 +1,5 @@
 import random
-from limpiar_pantalla import *
+from limpiar import *
 from files import*
 
 

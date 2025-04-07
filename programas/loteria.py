@@ -1,15 +1,14 @@
 
 #Librerías
 import random
-from limpiar_pantalla import *
+from limpiar import *
 from files import *
 
 
-   
 #-------------------------------------------------------------------------------------------------------
 #Funcion Principal de creación de boletas para lotería
 def creacion_boletas_loteria():
-   #Listas 
+   #Listas y Variables  
    global boleta_total_loteria 
    boleta_total_loteria = 0
    revanchas_loteria = []
@@ -37,10 +36,10 @@ def creacion_boletas_loteria():
        precio_revancha_loteria = 0
        
       
-       cantidad_jugadas = int(input("¿Cuántas jugadas desea realizar?: "))
+       contador_jugadas = int(input("¿Cuántas jugadas desea realizar?: "))
        
     
-       for jugada in range(cantidad_jugadas):
+       for jugada in range(contador_jugadas):
          precio_jugada_loteria += 2
          jugada = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
       
@@ -54,10 +53,12 @@ def creacion_boletas_loteria():
             print("\nLa jugada fue añadida para Revancha")
          else:
             print("\nLa jugada no fue añadida como revancha")   
+
+          
         
         #Limpiar pantalla para mejor visualización
        limpiar_pantalla()
-      
+     
        precio_total = precio_jugada_loteria + precio_revancha_loteria
        print(f"\nJugadas Aleatorias ingresadas: {jugadas}")
        print(f"\nJugadas con Revancha: {revanchas_loteria}")
@@ -103,14 +104,14 @@ def creacion_boletas_loteria():
         print(f"Cada jugada cuesta $2.00")
         print(f"Cada revancha cuesta $1.00")
 
-        #Variable para la cantidad de jugadas
-        cantidad_jugadas = int(input("Ingrese la cantidad de jugadas a realizar: "))
+        #Variable para la cantidad_jugadas de jugadas
+        contador_jugadas = int(input("Ingrese la cantidad_jugadas de jugadas a realizar: "))
         
         
         while True:
             try:
                
-                for i in range(cantidad_jugadas):
+                for i in range(contador_jugadas):
                     
                     #Listas inicializadas en el For
                     precio_jugada_loteria += 2
@@ -146,8 +147,7 @@ def creacion_boletas_loteria():
                     else:
                         print("\nLa jugada no fue añadida como revancha")   
 
-                    
-                
+
                 #Limpiar pantalla para mejor visualización
                 limpiar_pantalla()
                 
@@ -180,11 +180,11 @@ def creacion_boletas_loteria():
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
          #Cerrando el ciclo While True
             return boleta_total_loteria
-              
 
+   
 #-----------------------------------------------------------------------------------------------------------------------------------------
     #Returns de la función Creación_Boletas:
-   return aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria, boleta_total
+   return aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria, boleta_total,
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 #Fin de la función creación de boletas de Lotería
 
@@ -202,6 +202,7 @@ def sorteo_loteria_revanchas(revanchas):
     sorteo_revanchas = generar_sorteo()
     print(f"Sorteo generado: {sorteo_revanchas}")
     
+
      
     with open(file , "a") as archivo:
        archivo.write(f"{'=' * 50}\n")
@@ -220,12 +221,16 @@ def sorteo_loteria_revanchas(revanchas):
 
            if len(coincidencias) == 3:
               premio = "Felicidades, acertaste 3 números y ganaste un boleto gratis"
+              contador_ganador += 1
            elif len(coincidencias) == 4:
               premio = "Felicidades, acertaste 4 números y ganaste 75,000 dólares"
+              contador_ganador += 1
            elif len(coincidencias) == 5:
               premio = "Felicidades, acertaste 5 números y ganaste 300,000 dólares"
+              contador_ganador += 1
            elif len(coincidencias) == 6:
               premio = "Felicidades, acertaste todos los números y ganaste EL MILLÓN"
+              contador_ganador += 1
            elif len(coincidencias) <= 2:
               print(f"La jugada {i + 1} no ganó.")
               premio = "No pudo ganar ningun premio"
@@ -246,6 +251,8 @@ def sorteo_loteria_jugadas(jugadas):
      premio = " "
      sorteo_jugadas = generar_sorteo()
      print(f"Sorteo generado: {sorteo_jugadas}")
+       
+    
      
      with open(file , "a") as archivo:
        archivo.write(f"{'=' * 50}\n")
@@ -253,6 +260,9 @@ def sorteo_loteria_jugadas(jugadas):
        archivo.write(f"El sorteo generado es: {sorteo_jugadas}\n")
        archivo.write(f"{'=' * 50}\n")
        
+
+     
+
      print("\nComparación de Boletas:")
     #Búcle para la comparación de boleta
      for i, boleta in enumerate(jugadas):
@@ -264,12 +274,16 @@ def sorteo_loteria_jugadas(jugadas):
 
             if len(coincidencias) == 3:
                premio = "Felicidades, acertaste 3 números y ganaste un boleto gratis"
+               contador_ganador += 1
             elif len(coincidencias) == 4:
                premio = "Felicidades, acertaste 4 números y ganaste 75,000 dólares"
+               contador_ganador += 1
             elif len(coincidencias) == 5:
                premio = "Felicidades, acertaste 5 números y ganaste 300,000 dólares"
+               contador_ganador += 1
             elif len(coincidencias) == 6:
                premio = "Felicidades, acertaste todos los números y ganaste EL MILLÓN"
+               contador_ganador += 1
             elif len(coincidencias) <= 2:
                 print(f"La jugada {i + 1} no ganó.")
                 premio = "No pudo ganar ningun premio"
@@ -279,6 +293,7 @@ def sorteo_loteria_jugadas(jugadas):
         else:
            print(f"La jugada {i + 1} no ganó.")
            premio = "No pudo ganar ningun premio"
+           
 
         try:
             with open(file, "a") as archivo:
@@ -292,5 +307,10 @@ def sorteo_loteria_jugadas(jugadas):
         except Exception as e:
             print(f"Error: {e}")
 
+      
+
 #-----------------------------------------------------------------------------------------------------------------    
 #Final de la función sorteo_loteria_jugadas
+
+
+

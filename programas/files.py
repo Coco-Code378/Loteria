@@ -1,7 +1,7 @@
 
                                             #Creo la función de boletas manuales
 #-----------------------------------------------------------------------------------------------------------------------------------------
-file2 = "boletas_saca3.txt"
+file2 = ".\\Archivos\\boletas_saca3.txt"
 def crear_archivo_saca3(file2):
     
     try:
@@ -18,7 +18,7 @@ def crear_archivo_saca3(file2):
 
                            #Creación del file para aleatorio
 #------------------------------------------------------------------------------------------
-file = "boletas.txt"
+file = ".\\Archivos\\boletas_loteria.txt"
 def crear_archivo(file):
     
     #Comenzamos el manejo de errores pero por existencia

@@ -398,3 +398,10 @@ Boleta 4
 Jugadas : [[37, 46, 3, 36, 21, 9]]
 Jugadas de revancha: []
 Precio total $2: 
+==================================================
+------- Boleta aleatoria -------
+==================================================
+Boleta 5
+Jugadas : [[62, 19, 12, 48, 13, 35]]
+Jugadas de revancha: []
+Precio total $2: 

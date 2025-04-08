@@ -1,0 +1,14 @@
+
+==================================================
+------- Saca 3 Boleta Manual -------
+==================================================
+Boleta 1
+Jugadas : [[1, 2, 3]]
+Jugadas de revancha: []
+Precio total $2: 
+Boleta 1: [1, 2, 3]
+Sorteo generado: [3, 0, 2]
+Coincidencias: [2, 3]
+iguales: No
+Premio: Sin premio.
+==================================================

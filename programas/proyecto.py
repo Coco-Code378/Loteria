@@ -22,7 +22,7 @@ def main():
     #Variables para conteo
     contador_sorteos = 0
     #Referencias de funciones:
-    principal, juego, boletas,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
+    principal, juego, boletas,menu_juegos_saca3,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
     aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria, total_boletas = creacion_boletas_loteria()
     aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
     
@@ -221,6 +221,9 @@ def main():
 
                                     print(f"\n {"-" * 15} Creación de Boletas Automatica: {"-" * 15}\n")
                                     aleatorio_saca3()
+        
+                                    
+
                                     
                                     
                                     

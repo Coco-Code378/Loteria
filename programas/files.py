@@ -31,5 +31,18 @@ def crear_archivo(file):
         
 #--------------------------------------------------------------------------------------        
     
+file3 = ".\\Archivos\\Reportes_Loteria.txt"   
+                          #Creación del file para reportes
+#------------------------------------------------------------------------------------------
+file = ".\\Archivos\\boletas_loteria.txt"
+def crear_archivo(file3):
     
-
+    #Comenzamos el manejo de errores pero por existencia
+    try: 
+     with open(file3, "x") :#Me ayuda crear el archivo y cerrarlo automaticamente
+        print(f"Archivo {file3} se creo bien")
+        
+    except FileExistsError:
+        print("El archivo ya existe")
+        
+#--------------------------------------------------------------------------------------       

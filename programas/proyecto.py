@@ -21,19 +21,32 @@ def obtener_boletas_guardadas():
              
     except FileNotFoundError:
            return 0
+def obtener_boletas_guardadas():
+  #Leyendo archivo para almacenar los valores de conteos
+    try:
+      with open(".\\Memoria\\memoria_boleta.txt", "r") as mb:
+            int(mb.read()) 
+             
+    except FileNotFoundError:
+           return 0
 
 #----------------------------------------------------------------------------------------
 #Función para el programa Main
 def main():
     
     #Variables para contadores
+    
+    #Variables para contadores
     contador_sorteos = 0
+    total_boletas = obtener_boletas_guardadas()
+
     total_boletas = obtener_boletas_guardadas()
 
     #Referencias de funciones:
     principal, juego, boletas,menu_juegos_saca3,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
     aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria, total_boletas = creacion_boletas_loteria()
     aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
+    guardar = guardar_total_boletas()
     guardar = guardar_total_boletas()
     
 
@@ -117,6 +130,7 @@ def main():
                                 print(f"\n {"-" * 15} Sorteos Para Jugadas... {"-" * 15}\n")
                                 
                                 print(f"La cantidad de boletas es {boleta_total() - 1}")
+                                print(f"La cantidad de boletas es {boleta_total() - 1}")
 
                           
                                 print(f"\n {"-" * 7}Comparación de Boletas...: {"-" * 7}")   
@@ -146,6 +160,40 @@ def main():
                             case "3":
                                 print(f"\n {"-" * 15} Reportes {"-" * 15}\n")
                                      
+                                print(f"+==========================================================================+")
+                                print(f"|       La cantidad de boletas vendidas en Loteria:  {get_boleta_total()}                      |")    
+                                print(f"|--------------------------------------------------------------------------|")  
+                                print(f"|           La cantidad de jugadas en las boletas: {len(jugadas)}                       |")  
+                                print(f"|--------------------------------------------------------------------------|")     
+                                print(f"|         La cantidad de jugadas con revancha: {len(revanchas_loteria)}                           |")
+                                print(f"|--------------------------------------------------------------------------|")    
+                                print(f"|           La cantidad de sorteo generados: {contador_sorteos}                             |")
+                                print(f"|--------------------------------------------------------------------------|")     
+                                print(f"|         La cantidad de jugadas ganadoras: {contador_de_ganadores() - 1}                              |")
+                                print(f"+==========================================================================+")   
+                                
+                                try:
+                                    #Variables para guardar en el archivo
+                                                                 
+                                    ganadores = contador_de_ganadores() - 1
+                                 
+                                    with open(file3, "w") as archivo:
+                                        archivo.write(f"\n {"-" * 15} Reportes {"-" * 15}\n")
+                                        
+                                        archivo.write(f"\n+=========================================================================+")
+                                        archivo.write(f"\n|       La cantidad de boletas vendidas en Loteria: {get_boleta_total()}                     |")     
+                                        archivo.write(f"\n|-------------------------------------------------------------------------|")  
+                                        archivo.write(f"\n|           La cantidad de jugadas en las boletas: {len(jugadas)}                      |")   
+                                        archivo.write(f"\n|-------------------------------------------------------------------------|")     
+                                        archivo.write(f"\n|         La cantidad de jugadas con revancha: {len(revanchas_loteria)}                          |")
+                                        archivo.write(f"\n|-------------------------------------------------------------------------|")    
+                                        archivo.write(f"\n|           La cantidad de sorteo generados: {contador_sorteos}                            |")
+                                        archivo.write(f"\n|-------------------------------------------------------------------------|")     
+                                        archivo.write(f"\n|         La cantidad de jugadas ganadoras: {ganadores - 1}                             |")
+                                        archivo.write(f"\n+=========================================================================+")   
+                                        print(f"\nEl archivo {file3} fue creado exitosamente")
+                                except Exception as error:
+                                     print(f"Ocurrió un error al intentar crear el archivo: {error}")
                                 print(f"+==========================================================================+")
                                 print(f"|       La cantidad de boletas vendidas en Loteria:  {get_boleta_total()}                      |")    
                                 print(f"|--------------------------------------------------------------------------|")  
@@ -351,6 +399,9 @@ def main():
 
                     guardar()
 
+
+                    guardar()
+
                     exit()
                     break
                 
@@ -367,6 +418,7 @@ def main():
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
         except Exception as error:
                 print(f"Tiene un error llamado {error}, inténtalo más tarde por favor.")
+                print(f"Tiene un error llamado {error}, inténtalo más tarde por favor.")
  #----------------------------------------------------------------------------------------------------------------------------------------------------------
                             
                             
@@ -376,6 +428,9 @@ def main():
 #--------------------------------------------------------------------------------------------
 #Llamada a la función Main para que el programa empiece con dicha función
 main()
+  
+         
+    
   
          
     

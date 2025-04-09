@@ -13,24 +13,12 @@ from saca3 import *
 
 
 
-def obtener_boletas_guardadas():
-  #Leyendo archivo para almacenar los valores de conteos
-    try:
-      with open(".\\Memoria\\memoria_boleta.txt", "r") as mb:
-            int(mb.read()) 
-             
-    except FileNotFoundError:
-           return 0
-
 
 
 #----------------------------------------------------------------------------------------
 #Función para el programa Main
 def main():
      
-    #Variables para contadores
-    contador_sorteos = 0
-    
 
  
     #Referencias de funciones:
@@ -38,7 +26,7 @@ def main():
     principal, juego, boletas, premios_loteria, premios_saca3 = menu()
     aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria = creacion_boletas_loteria()
     aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
-    guardar = guardar_total_boletas()
+    
     
 
     
@@ -117,7 +105,6 @@ def main():
                              #Este es el tercer case del segundo match case para generar sorteo aleatoriamente
                              #--------------------------------------------------------------------------------------------------------------------------------       
                             case "2":
-                                contador_sorteos += 1
                                 print(f"\n {"-" * 15} Sorteos Para Jugadas... {"-" * 15}\n")
                                 
                                 print(f"La cantidad de boletas es {get_boleta_total()}")
@@ -133,7 +120,7 @@ def main():
 
                                 if elegir == "Si":
                                     limpiar_pantalla()
-                                    contador_sorteos += 1
+
                                     print(f"\n {"-" * 15} Sorteos Para Revanchas... {"-" * 15}\n")
                                     print(f"\n {"-" * 7}Comparación de Boletas...: {"-" * 7}")  
                                     sorteo_loteria_revanchas(revanchas_loteria)
@@ -153,33 +140,29 @@ def main():
                                 print(f"+==========================================================================+")
                                 print(f"|       La cantidad de boletas vendidas en Loteria:  {get_boleta_total()}                      |")    
                                 print(f"|--------------------------------------------------------------------------|")  
-                                print(f"|           La cantidad de jugadas en las boletas: {len(jugadas)}                       |")  
+                                print(f"|           La cantidad de jugadas en las boletas: {get_jugadas()}                       |")  
                                 print(f"|--------------------------------------------------------------------------|")     
-                                print(f"|         La cantidad de jugadas con revancha: {len(revanchas_loteria)}                           |")
+                                print(f"|         La cantidad de jugadas con revancha: {get_revanchas()}                           |")
                                 print(f"|--------------------------------------------------------------------------|")    
-                                print(f"|           La cantidad de sorteo generados: {contador_sorteos}                             |")
+                                print(f"|           La cantidad de sorteo generados: {get_contador_de_sorteos()}                             |")
                                 print(f"|--------------------------------------------------------------------------|")     
-                                print(f"|         La cantidad de jugadas ganadoras: {contador_de_ganadores() - 1}                              |")
+                                print(f"|         La cantidad de jugadas ganadoras: {get_contador_de_ganadores()}                              |")
                                 print(f"+==========================================================================+")   
                                 
                                 try:
-                                    #Variables para guardar en el archivo
-                                                                 
-                                    ganadores = contador_de_ganadores() - 1
-                                 
                                     with open(file3, "w") as archivo:
                                         archivo.write(f"\n {"-" * 15} Reportes {"-" * 15}\n")
                                         
                                         archivo.write(f"\n+=========================================================================+")
                                         archivo.write(f"\n|       La cantidad de boletas vendidas en Loteria: {get_boleta_total()}                     |")     
                                         archivo.write(f"\n|-------------------------------------------------------------------------|")  
-                                        archivo.write(f"\n|           La cantidad de jugadas en las boletas: {len(jugadas)}                      |")   
+                                        archivo.write(f"\n|           La cantidad de jugadas en las boletas: {get_jugadas()}                      |")   
                                         archivo.write(f"\n|-------------------------------------------------------------------------|")     
-                                        archivo.write(f"\n|         La cantidad de jugadas con revancha: {len(revanchas_loteria)}                          |")
+                                        archivo.write(f"\n|         La cantidad de jugadas con revancha: {get_revanchas()}                          |")
                                         archivo.write(f"\n|-------------------------------------------------------------------------|")    
-                                        archivo.write(f"\n|           La cantidad de sorteo generados: {contador_sorteos}                            |")
+                                        archivo.write(f"\n|           La cantidad de sorteo generados: {get_contador_de_sorteos()}                            |")
                                         archivo.write(f"\n|-------------------------------------------------------------------------|")     
-                                        archivo.write(f"\n|         La cantidad de jugadas ganadoras: {ganadores - 1}                             |")
+                                        archivo.write(f"\n|         La cantidad de jugadas ganadoras: {get_contador_de_ganadores()}                             |")
                                         archivo.write(f"\n+=========================================================================+")   
                                         print(f"\nEl archivo {file3} fue creado exitosamente")
                                 except Exception as error:
@@ -189,6 +172,7 @@ def main():
                             #------------------------------------------------------------------------------------------------------------------------------------         
                             case "4":
                                 print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
+                                exit()
                                 break
                             
                             
@@ -353,8 +337,6 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
                 case "3":
                     print(f"{"-" * 15} Saliendo del programa... {"-" * 15}")
-
-                    guardar()
 
                     exit()
                     break

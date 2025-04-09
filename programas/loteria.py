@@ -327,7 +327,7 @@ def guardar_contador_de_sorteos():
       with open(memoria_sorteos, "w") as mb:
          mb.write(f"{contar_sorteos}")
    except Exception as error:
-      print(f"Error al intentar gaurdar en memoria: {error}")
+      print(f"Error al intentar guardar en memoria: {error}")
 
 
 #---------------------------------------------------------------------------------------------------------

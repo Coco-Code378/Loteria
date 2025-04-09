@@ -22,15 +22,20 @@ def obtener_boletas_guardadas():
     except FileNotFoundError:
            return 0
 
+
+
 #----------------------------------------------------------------------------------------
 #Función para el programa Main
 def main():
-    
+     
     #Variables para contadores
     contador_sorteos = 0
+    
 
+ 
     #Referencias de funciones:
     principal, juego, boletas,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
+    principal, juego, boletas, premios_loteria, premios_saca3 = menu()
     aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria = creacion_boletas_loteria()
     aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
     guardar = guardar_total_boletas()
@@ -115,7 +120,7 @@ def main():
                                 contador_sorteos += 1
                                 print(f"\n {"-" * 15} Sorteos Para Jugadas... {"-" * 15}\n")
                                 
-                                print(f"La cantidad de boletas es {boleta_total() - 1}")
+                                print(f"La cantidad de boletas es {get_boleta_total()}")
 
                           
                                 print(f"\n {"-" * 7}Comparación de Boletas...: {"-" * 7}")   

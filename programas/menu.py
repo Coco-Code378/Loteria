@@ -34,16 +34,6 @@ def menu():
 
 
 
-#-----------------------------------------------------------------------------------------
-    #Funcion para menu de creacion de boletas de saca 3
-    def menu_boletas_saca3():
-            print(f"\n {"-" * 15} Creación de Boletas {"-" * 15}\n")
-            print(f"{"-" * 15} Selección de jugadas: {"-" * 15}")
-            print(f"{"-" * 6} ¿Cómo deseas llenar tus jugadas? {"-" * 6}")
-            print(f"{"-" * 6} 1. Manual")
-            print(f"{"-" * 6} 2. Aleatorio")
-    #fin de funcion para creacion de boletas de saca 3
-#------------------------------------------------------------------------------------------
     #Funcion Secundaria para premios de lotería
 #---------------------------------------------------------------------------------------------------------
     def premios_loteria():
@@ -90,4 +80,4 @@ def menu():
         
  #------------------------------------------------------------------------------------------------------------
  # Fin de la función de premios para Loteria      
-    return menu_principal, menu_juegos, menu_boletas,menu_boletas_saca3, premios_loteria, premios_saca3
+    return menu_principal, menu_juegos, menu_boletas, premios_loteria, premios_saca3

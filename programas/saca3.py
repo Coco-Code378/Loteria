@@ -125,7 +125,6 @@ def creacion_boleta_saca3():
                         print("El número debe estar entre 0 y 9.")
 
             jugadas.append(valores_jugadas)
-            aleatorio_saca3_reporte(jugadas)
             # Opcional: Revancha
             opcion = input("¿Deseas incluir esta jugada como revancha? (Si/No): ").capitalize()
             if opcion == "Si":
@@ -141,6 +140,7 @@ def creacion_boleta_saca3():
         print(f"Jugadas con revancha: {revancha_saca3}")
         print(f"Precio total: ${precio_total}")
         boleta_total_revancha()
+        aleatorio_saca3_reporte(jugadas)
         try:
             with open(file2, "a") as archivo:
                 archivo.write(f"{'=' * 50}\n")

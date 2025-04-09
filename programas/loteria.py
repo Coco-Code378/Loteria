@@ -4,17 +4,44 @@ import random
 from limpiar import *
 from files import *
 
-#Inicializando las variables globales
-contador_ganador = 0
 
+                                                   #Bloques de Try-Except para cargar la memoria:
+#------------------------------------------------------------------------------------------------------------------------------------------------
 try:
-   with open(".\\Memoria\\memoria_boleta.txt", "r") as archivo:
+   with open(".\\MemoriaLoteria\\memoria_boleta.txt", "r") as archivo:
     boleta_total_loteria = int(archivo.read())
 except FileNotFoundError:
     boleta_total_loteria = 0
 
 
-#-------------------------------------------------------------------------------------------------------
+try:
+   with open(".\\MemoriaLoteria\\memoria_boleta_ganadora.txt") as archivo:
+      contador_ganador = int(archivo.read())
+except FileNotFoundError:
+      contador_ganador = 0
+
+try:
+   with open(".\\MemoriaLoteria\\memoria_revancha.txt") as archivo:
+      contador_de_revanchas = int(archivo.read())
+except FileNotFoundError:
+      contador_de_revanchas = 0
+
+try:
+   with open(".\\MemoriaLoteria\\memoria_jugadas.txt") as archivo:
+      contador_de_jugadas = int(archivo.read())
+except FileNotFoundError:
+      contador_de_jugadas = 0
+
+try:
+   with open(".\\MemoriaLoteria\\memoria.sorteos.txt") as archivo:
+      contar_sorteos = int(archivo.read())
+except FileNotFoundError:
+      contar_sorteos = 0
+
+#------------------------------------------------------------------------------------------------------------------------------------------------
+#Fin de los bloques de Try-Except para cargar la memoria
+
+#----------------------------------------------------------------------------------------------------------------------------------------------------
 #Funcion Principal de creación de boletas para lotería
 def creacion_boletas_loteria():
    #Listas y Variables 
@@ -37,29 +64,50 @@ def creacion_boletas_loteria():
        for jugada in range(contador_jugadas):
          precio_jugada_loteria += 2
          jugada = random.sample(range(0, 66), 6)  # Genera una nueva boleta aleatoria
-      
+
          jugadas.append(jugada)  # Agrega a la lista local
          print(f"Tu jugada aleatoria: {jugada}")
-         opcion = input("\n¿Deseas incluir esta jugada como revancha? (Si/No): ")
+
+         contar_jugadas()
+
+         #Función para guardar la cantidad de jugadas en un archivo:
+         guardar_jugadas()
+
+        #Ingresando la opción para incluir las jugadas como revancha:
+         opcion = input("¿Deseas incluir esta jugada como revancha? (Si/No): ")
          opcion = opcion.capitalize()
          if opcion == "Si":
             precio_revancha_loteria += 1
-            revanchas_loteria.append(jugada)
+            revanchas_loteria.append(jugadas)
+
+            #Contador de revanchas
+            contar_revanchas()
+
+            #Guardar las cantidad de jugadas en el archivo:
+            guardar_jugadas_revancha()
+
             print("\nLa jugada fue añadida para Revancha")
          else:
-            print("\nLa jugada no fue añadida como revancha")   
+            print("\nLa jugada no fue añadida como revancha")      
 
           
         
         #Limpiar pantalla para mejor visualización
        limpiar_pantalla()
      
+       #prints
        precio_total = precio_jugada_loteria + precio_revancha_loteria
        print(f"\nJugadas Aleatorias ingresadas: {jugadas}")
        print(f"\nJugadas con Revancha: {revanchas_loteria}")
        print(f"\nPrecio total: ${precio_total}")        
+
+       #Función para conteo de boletas totales
        boleta_total()
+       
+       #Función para guardar el total de boletas en un archivo
        guardar_total_boletas()
+
+       
        try:
           with open(file , "a") as archivo:
              archivo.write(f"{'=' *50}\n")
@@ -108,7 +156,7 @@ def creacion_boletas_loteria():
             try:
                
                 for i in range(contador_jugadas):
-                    
+                    contar_jugadas()
                     #Listas inicializadas en el For
                     precio_jugada_loteria += 2
                     valores_jugadas = []
@@ -134,11 +182,22 @@ def creacion_boletas_loteria():
                     valores_unicos.clear()             
                     jugadas.append(valores_jugadas)
 
+                    #Función para guardar la cantidad de jugadas en un archivo:
+                    guardar_jugadas()
+                    
+                    #Ingresando la opción para incluir las jugadas como revancha:
                     opcion = input("¿Deseas incluir esta jugada como revancha? (Si/No): ")
                     opcion = opcion.capitalize()
                     if opcion == "Si":
                         precio_revancha_loteria += 1
-                        revanchas_loteria.append(jugadas)
+                        revanchas_loteria.append(valores_jugadas[:])
+
+                        #Contador de revanchas:
+                        contar_revanchas()
+
+                        #Guardar las cantidad de jugadas en el archivo:
+                        guardar_jugadas_revancha()
+
                         print("\nLa jugada fue añadida para Revancha")
                     else:
                         print("\nLa jugada no fue añadida como revancha")   
@@ -147,12 +206,20 @@ def creacion_boletas_loteria():
                 #Limpiar pantalla para mejor visualización
                 limpiar_pantalla()
                 
+                #Prints
                 precio_total = precio_jugada_loteria + precio_revancha_loteria
                 print(f"\nJugadas manuales ingresadas: {jugadas}")
                 print(f"\nJugadas con Revancha: {revanchas_loteria}")
                 print(f"\nPrecio total: ${precio_total}")
+
+                #Función para el conteo de boletas
                 boleta_total()
+
+                #Función para guardar en un archivo el total de boletas
                 guardar_total_boletas()
+
+                
+
                 try:
                  with open(file , "a") as archivo:
                   archivo.write(f"{'=' *50}\n")
@@ -187,7 +254,7 @@ def creacion_boletas_loteria():
 
                                        #Funciones para conteos
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
-#Funcion para incrementar el valor de boletas:
+#Funcion para almacenar, sumar y obtener el valor de las boletas.
 #---------------------------------------------------------------------------------------------------------
 
 def boleta_total():
@@ -204,7 +271,7 @@ def get_boleta_total():
 def guardar_total_boletas():
    try:
       global boleta_total_loteria
-      memoria_boleta = ".\\Memoria\\memoria_boleta.txt" 
+      memoria_boleta = ".\\MemoriaLoteria\\memoria_boleta.txt" 
       with open(memoria_boleta, "w") as mb:
          mb.write(f"{boleta_total_loteria}")
    except Exception as error:
@@ -212,20 +279,104 @@ def guardar_total_boletas():
    
    return guardar_total_boletas
 #---------------------------------------------------------------------------------------------------------
-#Final de la función para incrementar el valor de las boletas
+#Final de la funcion para almacenar, sumar y obtener el valor de las boletas.
 
-#Funcion para incrementar el valor de las boletas ganadoras:
+#Funcion para para almacenar, sumar y obtener el valor  de las boletas ganadoras:
 #---------------------------------------------------------------------------------------------------------
 def contador_de_ganadores():
    global contador_ganador 
    contador_ganador += 1     
 
-
    return contador_ganador
+
+def get_contador_de_ganadores():
+   global contador_ganador
+   return contador_ganador
+
+def guardar_contador_de_ganadores():
+    try:
+      global contador_ganador
+      memoria_boleta_ganadora = ".\\MemoriaLoteria\\memoria_boleta_ganadora.txt" 
+      with open(memoria_boleta_ganadora, "w") as mb:
+         mb.write(f"{contador_ganador}")
+    except Exception as error:
+         print(f"Error al intentar guardar en memoria: {error}")
+   
+    
+
+#Fin de la funcion para para almacenar, sumar y obtener el valor  de las boletas ganadoras:
+#---------------------------------------------------------------------------------------------------------
+
+#Funciones para contar la cantidad de sorteos:
+#---------------------------------------------------------------------------------------------------------
+
+def contador_de_sorteos():
+   global contar_sorteos 
+   contar_sorteos += 1
+
+   return contar_sorteos 
+
+def get_contador_de_sorteos():
+   global contar_sorteos
+   return contar_sorteos
+
+def guardar_contador_de_sorteos():
+   try:
+      global contar_sorteos
+      memoria_sorteos = ".\\MemoriaLoteria\\memoria_sorteos.txt"
+      with open(memoria_sorteos, "w") as mb:
+         mb.write(f"{contar_sorteos}")
+   except Exception as error:
+      print(f"Error al intentar gaurdar en memoria: {error}")
 
 
 #---------------------------------------------------------------------------------------------------------
-#Fin para incrementar el valor de las boletas ganadoras:
+#Final de contadores de sorteos
+
+#Creación de funciones para guardar en un archivo la cantidad de valores de los arreglos de jugada y revancha
+#---------------------------------------------------------------------------------------------------------
+def contar_jugadas():
+   global contador_de_jugadas
+   contador_de_jugadas += 1
+
+   return contador_de_jugadas
+
+def contar_revanchas():
+   global contador_de_revanchas
+   contador_de_revanchas += 1
+
+   return contador_de_revanchas
+
+def get_jugadas():
+   global contador_de_jugadas
+   return contador_de_jugadas
+
+def get_revanchas():
+   global contador_de_revanchas
+   return contador_de_revanchas
+
+def guardar_jugadas():
+   
+   try:
+      global contador_de_jugadas
+      memoria_jugada = ".\\MemoriaLoteria\\memoria_jugadas.txt"
+      with open(memoria_jugada, "w") as mb:
+         mb.write(f"{contador_de_jugadas}")
+   except Exception as error:
+      print(f"Error al intentar guardar en memoria: {error}")
+
+def guardar_jugadas_revancha():
+   
+   try:
+      global contador_de_revanchas
+      memoria_revancha = ".\\MemoriaLoteria\\memoria_revancha.txt"
+      with open(memoria_revancha, "w") as mb:
+         mb.write(f"{contador_de_revanchas}")
+   except Exception as error:
+      print(f"Error al intentar guardar en memoria: {error}")
+
+#---------------------------------------------------------------------------------------------------------
+#Fin de la función para guardar en un archivo la cantidad de valores de los arreglos de jugada y revancha
 
                                             #Creación de Sorteos Loteria
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -237,6 +388,9 @@ def generar_sorteo():
 #Comienzo de la función sorteo_loteria_revancha
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 def sorteo_loteria_revanchas(revanchas):
+    #Función para contar los sorteos 
+    contador_de_sorteos()
+
     premio = " "
     sorteo_revanchas = generar_sorteo()
     print(f"Sorteo generado: {sorteo_revanchas}")
@@ -260,16 +414,38 @@ def sorteo_loteria_revanchas(revanchas):
 
            if len(coincidencias) == 3:
               premio = "Felicidades, acertaste 3 números y ganaste un boleto gratis"
+
+              #Función para contar los ganadores
               contador_de_ganadores()
+
+              #Función para guardar los valores del conteo:
+              guardar_contador_de_ganadores()
+              
            elif len(coincidencias) == 4:
               premio = "Felicidades, acertaste 4 números y ganaste 75,000 dólares"
+
+              #Función para contar los ganadores
               contador_de_ganadores()
+
+              #Función para guardar los valores del conteo:
+              guardar_contador_de_ganadores()
+
            elif len(coincidencias) == 5:
               premio = "Felicidades, acertaste 5 números y ganaste 300,000 dólares"
+
+              #Función para contar los ganadores
               contador_de_ganadores()
+
+              #Función para guardar los valores del conteo:
+              guardar_contador_de_ganadores()
            elif len(coincidencias) == 6:
               premio = "Felicidades, acertaste todos los números y ganaste EL MILLÓN"
+
+              #Función para contar los ganadores
               contador_de_ganadores()
+
+              #Función para guardar los valores del conteo:
+              guardar_contador_de_ganadores()
            elif len(coincidencias) <= 2:
               print(f"La jugada {i + 1} no ganó.")
               
@@ -283,6 +459,8 @@ def sorteo_loteria_revanchas(revanchas):
             archivo.write(f"Su premio es {premio}")
             archivo.write("=" * 50)
 
+       #Función para guardar en archivo los conteos de sorteos
+       guardar_contador_de_sorteos()
     return contador_ganador
     
 #----------------------------------------------------------------------------------------------------------------- 
@@ -291,6 +469,9 @@ def sorteo_loteria_revanchas(revanchas):
 #Comiezno de la funcion sorteo_loteria_jugadas
 #----------------------------------------------------------------------------------------------------------------- 
 def sorteo_loteria_jugadas(jugadas):
+     #Función para contar los sorteos 
+     contador_de_sorteos()
+
      premio = " "
      sorteo_jugadas = generar_sorteo()
      print(f"Sorteo generado: {sorteo_jugadas}")
@@ -317,27 +498,49 @@ def sorteo_loteria_jugadas(jugadas):
 
             if len(coincidencias) == 3:
                premio = "Felicidades, acertaste 3 números y ganaste un boleto gratis"
+
+
+               #Función para contar los ganadores
                contador_de_ganadores()
+
+              #Función para guardar los valores del conteo:
+               guardar_contador_de_ganadores()
             elif len(coincidencias) == 4:
                premio = "Felicidades, acertaste 4 números y ganaste 75,000 dólares"
+
+               #Función para contar los ganadores
                contador_de_ganadores()
+
+               #Función para guardar los valores del conteo:
+               guardar_contador_de_ganadores()
+
             elif len(coincidencias) == 5:
                premio = "Felicidades, acertaste 5 números y ganaste 300,000 dólares"
+
+               #Función para contar los ganadores
                contador_de_ganadores()
+
+               #Función para guardar los valores del conteo:
+               guardar_contador_de_ganadores()
+
             elif len(coincidencias) == 6:
                premio = "Felicidades, acertaste todos los números y ganaste EL MILLÓN"
+
+               #Función para contar los ganadores
                contador_de_ganadores()
+
+               #Función para guardar los valores del conteo:
+               guardar_contador_de_ganadores()
+
             elif len(coincidencias) <= 2:
                 print(f"La jugada {i + 1} no ganó.")
                 premio = "No pudo ganar ningun premio"
-                contador_de_ganadores()
+
             else:
                 print(f"La jugada {i + 1} no ganó.")
-                
                 premio = "No pudo ganar ningun premio"
         else:
            print(f"La jugada {i + 1} no ganó.")
-           
            premio = "No pudo ganar ningun premio"
            
 

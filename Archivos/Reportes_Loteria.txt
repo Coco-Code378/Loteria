@@ -2,13 +2,13 @@
  --------------- Reportes ---------------
 
 +=========================================================================+
-|       La cantidad de boletas vendidas en Loteria: 5                     |
+|       La cantidad de boletas vendidas en Loteria: 18                     |
 |-------------------------------------------------------------------------|
-|           La cantidad de jugadas en las boletas: 1                      |
+|           La cantidad de jugadas en las boletas: 4                      |
 |-------------------------------------------------------------------------|
-|         La cantidad de jugadas con revancha: 0                          |
+|         La cantidad de jugadas con revancha: 4                          |
 |-------------------------------------------------------------------------|
 |           La cantidad de sorteo generados: 0                            |
 |-------------------------------------------------------------------------|
-|         La cantidad de jugadas ganadoras: 0                             |
+|         La cantidad de jugadas ganadoras: 2                             |
 +=========================================================================+

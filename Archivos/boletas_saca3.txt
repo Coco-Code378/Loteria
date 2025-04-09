@@ -1,14 +1,11 @@
-
 ==================================================
-------- Saca 3 Boleta Manual -------
+-------Su boleta es: [1, 2, 3] -------
+ ==================================================
+La del sorteo es: [8, 3, 4]
+Iguales: [3]
+Su premio es: Sin premio.
 ==================================================
-Boleta 1
-Jugadas : [[1, 2, 3]]
-Jugadas de revancha: []
-Precio total $2: 
-Boleta 1: [1, 2, 3]
-Sorteo generado: [3, 0, 2]
-Coincidencias: [2, 3]
-iguales: No
-Premio: Sin premio.
+==================================================
+------- Saca 3 Sorteo -------
+El sorteo generado es: [5, 6, 3]
 ==================================================

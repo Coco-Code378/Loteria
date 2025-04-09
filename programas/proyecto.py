@@ -28,11 +28,10 @@ def main():
     
     #Variables para contadores
     contador_sorteos = 0
-    total_boletas = obtener_boletas_guardadas()
 
     #Referencias de funciones:
-    principal, juego, boletas,menu_juegos_saca3,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
-    aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria, total_boletas = creacion_boletas_loteria()
+    principal, juego, boletas,menu_boletas_saca3, premios_loteria, premios_saca3 = menu()
+    aleatorio_loteria, manual_loteria, jugadas, revanchas_loteria = creacion_boletas_loteria()
     aleatorio_saca3,manual_saca3, boleta_total_revancha,jugada, revancha3= creacion_boleta_saca3()
     guardar = guardar_total_boletas()
     

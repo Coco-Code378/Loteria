@@ -15,25 +15,25 @@ except FileNotFoundError:
 
 
 try:
-   with open(".\\MemoriaLoteria\\memoria_boleta_ganadora.txt") as archivo:
+   with open(".\\MemoriaLoteria\\memoria_boleta_ganadora.txt", "r") as archivo:
       contador_ganador = int(archivo.read())
 except FileNotFoundError:
       contador_ganador = 0
 
 try:
-   with open(".\\MemoriaLoteria\\memoria_revancha.txt") as archivo:
+   with open(".\\MemoriaLoteria\\memoria_revancha.txt", "r") as archivo:
       contador_de_revanchas = int(archivo.read())
 except FileNotFoundError:
       contador_de_revanchas = 0
 
 try:
-   with open(".\\MemoriaLoteria\\memoria_jugadas.txt") as archivo:
+   with open(".\\MemoriaLoteria\\memoria_jugadas.txt", "r") as archivo:
       contador_de_jugadas = int(archivo.read())
 except FileNotFoundError:
       contador_de_jugadas = 0
 
 try:
-   with open(".\\MemoriaLoteria\\memoria.sorteos.txt") as archivo:
+   with open(".\\MemoriaLoteria\\memoria.sorteos.txt", "r") as archivo:
       contar_sorteos = int(archivo.read())
 except FileNotFoundError:
       contar_sorteos = 0
@@ -243,7 +243,7 @@ def creacion_boletas_loteria():
             except ValueError as value:
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
          #Cerrando el ciclo While True
-            return boleta_total_loteria
+           
 
    
 #-----------------------------------------------------------------------------------------------------------------------------------------
@@ -556,7 +556,8 @@ def sorteo_loteria_jugadas(jugadas):
         except Exception as e:
             print(f"Error: {e}")
 
-     return contador_de_ganadores
+     #Función para guardar en archivo los conteos de sorteos
+        guardar_contador_de_sorteos()
       
 
 #-----------------------------------------------------------------------------------------------------------------    

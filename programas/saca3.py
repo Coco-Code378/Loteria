@@ -106,7 +106,6 @@ def creacion_boleta_saca3():
             # Inicializar listas para la jugada actual
             precio_jugada_loteria += 2
             valores_jugadas = []
-            valores_unicos = set()
 
             # Introducción de valores de la jugada
             print(f"\n--- Jugada {i + 1} ---")
@@ -114,13 +113,10 @@ def creacion_boleta_saca3():
                 while True:
                     numeros = int(input(f"Ingrese el número {j + 1} (0-9, no se puede repetir): "))
                     if 0 <= numeros <= 9:
-                        if numeros not in valores_unicos:
                             valores_jugadas.append(numeros)
-                            valores_unicos.add(numeros)
                             print(f"Número {numeros} agregado correctamente.")
                             break
-                        else:
-                            print(f"El número {numeros} ya fue ingresado, elija otro.")
+                    
                     else:
                         print("El número debe estar entre 0 y 9.")
 
@@ -129,7 +125,7 @@ def creacion_boleta_saca3():
             opcion = input("¿Deseas incluir esta jugada como revancha? (Si/No): ").capitalize()
             if opcion == "Si":
               precio_revancha_saca3 += 1
-              revancha_saca3.append(jugadas)
+              revancha_saca3.append(valores_jugadas[:])
               print("\nLa jugada fue añadida para Revancha")
             else:
               print("\nLa jugada no fue añadida como revancha")   
@@ -140,7 +136,6 @@ def creacion_boleta_saca3():
         print(f"Jugadas con revancha: {revancha_saca3}")
         print(f"Precio total: ${precio_total}")
         boleta_total_revancha()
-        aleatorio_saca3_reporte(jugadas)
         try:
             with open(file2, "a") as archivo:
                 archivo.write(f"{'=' * 50}\n")
@@ -156,7 +151,12 @@ def creacion_boleta_saca3():
 
      except ValueError as value_error:
         print(f"Error: Valor inválido ingresado. Por favor, inténtelo de nuevo. {value_error}")
+#--------------------------------------------------------------------------------------------------------------------------------------        
         
+
+                                     
+                                        #Función para incrementar la bóleta
+#--------------------------------------------------------------------------------------------------------------------------------------
     def boleta_total_revancha():
       global boleta_total_saca3 # Permite modificar la variable externa
       boleta_total_saca3 += 1 #  Suma 1 cada vez que se ejecuta

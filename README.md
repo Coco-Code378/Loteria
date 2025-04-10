@@ -195,6 +195,8 @@ sorteo_saca3_revancha()
 
 ## Recursos Adicionales:
 
+[Documentacion Grupal] (https://docs.google.com/document/u/1/d/1gEZ4BbPLp1j_7AjLEYFIwo63857CsqpK6Ptov6vumxw/mobilebasic?usp=gmail)
+
 ## Desarrolladores:
 
 - Jorge Maldonado - Scrum Master

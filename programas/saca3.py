@@ -76,7 +76,7 @@ def creacion_boleta_saca3():
          contar_jugadas_saca3()
          
          precio_saca3 += 2
-         jugada = random.sample(range(0, 9), 3)  # Genera una nueva boleta aleatoria
+         jugada = random.randint(range(0, 9), 3)  # Genera una nueva boleta aleatoria
         
       
          jugadas.append(jugada)  # Agrega a la lista local

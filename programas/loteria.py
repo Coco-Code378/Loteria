@@ -33,7 +33,7 @@ except FileNotFoundError:
       contador_de_jugadas = 0
 
 try:
-   with open(".\\MemoriaLoteria\\memoria.sorteos.txt", "r") as archivo:
+   with open(".\\MemoriaLoteria\\memoria_sorteos.txt", "r") as archivo:
       contar_sorteos = int(archivo.read())
 except FileNotFoundError:
       contar_sorteos = 0
@@ -78,7 +78,7 @@ def creacion_boletas_loteria():
          opcion = opcion.capitalize()
          if opcion == "Si":
             precio_revancha_loteria += 1
-            revanchas_loteria.append(jugadas)
+            revanchas_loteria.append(jugada)
 
             #Contador de revanchas
             contar_revanchas()
@@ -218,27 +218,28 @@ def creacion_boletas_loteria():
                 #Función para guardar en un archivo el total de boletas
                 guardar_total_boletas()
 
-                
+              
 
                 try:
                  with open(file , "a") as archivo:
                   archivo.write(f"{'=' *50}\n")
                   archivo.write(f"{'-' * 7} Boleta Manual {'-' * 7}\n")
                   archivo.write(f"{'=' *50}\n")
+                  archivo.write(f"\n")
                   archivo.write(f"Boleta {boleta_total_loteria}\n")
                   archivo.write(f"Jugadas : {jugadas}\n" )
                   archivo.write(f"Jugadas de revancha: {revanchas_loteria}\n")
                   archivo.write(f"Precio total ${precio_total}: \n")
              
-             
-             
+                 break
+     
                 except FileExistsError:
                  print("Lo siento pero no encontramos su archivo")
           
                 except Exception as error:
                  print(f"Lo siento, el archivo tuvo un problema tipo: {error}")
                 
-                
+               
                 
             except ValueError as value:
                 print(f"\n Ingresaste un valor diferente a lo que se pide, por favor, inténtelo de nuevo. Error: {value} ")
@@ -378,12 +379,19 @@ def guardar_jugadas_revancha():
 #---------------------------------------------------------------------------------------------------------
 #Fin de la función para guardar en un archivo la cantidad de valores de los arreglos de jugada y revancha
 
+
+
+
                                             #Creación de Sorteos Loteria
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 #generar numero random en sorteos
 def generar_sorteo():
     return random.sample(range(0,66),6)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 #Comienzo de la función sorteo_loteria_revancha
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -562,6 +570,3 @@ def sorteo_loteria_jugadas(jugadas):
 
 #-----------------------------------------------------------------------------------------------------------------    
 #Final de la función sorteo_loteria_jugadas
-
-
-

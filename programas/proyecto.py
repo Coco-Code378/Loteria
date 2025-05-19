@@ -90,6 +90,8 @@ def main():
                                                        
                                           case _:
                                                print("Hubo un error al intentar seleccionar la opción deseada.")
+
+                                               
                                                              #Tercer Match Case para que el usuario escoga entre aleatorio o manual
                                      #-------------------------------------------------------------------------------------------------------
                                      
